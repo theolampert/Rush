@@ -39,7 +39,6 @@ struct Rush: App {
             }
             .onAppear {
                 store.connectClient(mqttConfig: MQTTConfiguration())
-
             }
         }
     }

@@ -17,7 +17,7 @@ class RushStore: ObservableObject {
     @Published var connectionStatus: CocoaMQTTConnState = .disconnected
 
     var selectedMessage: Message? {
-        if selectedMessageIndex > 0 && !messages.isEmpty {
+        if selectedMessageIndex > -1 && !messages.isEmpty {
             return messages[selectedMessageIndex]
         }
         return nil
@@ -77,5 +77,15 @@ class RushStore: ObservableObject {
                 }
             }
         }
+    }
+}
+
+extension Array {
+    public subscript(index: Int, default defaultValue: @autoclosure () -> Element) -> Element {
+        guard index >= 0, index < endIndex else {
+            return defaultValue()
+        }
+
+        return self[index]
     }
 }

@@ -39,9 +39,9 @@ struct ContentView: View {
                         .font(Font(NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)))
                         .foregroundColor(.gray)
                     Spacer()
-                    if store.selectedHistory.count > 1 {
-                        Histogram(data: store.selectedHistory)
-                    }
+//                    if store.selectedHistory.count > 1 {
+//                        Histogram(data: store.selectedHistory)
+//                    }
                 }.padding()
                     .background(Color(NSColor.textBackgroundColor))
                     .frame(maxWidth: .infinity, maxHeight: .infinity)

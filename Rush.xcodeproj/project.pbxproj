@@ -20,6 +20,7 @@
 		E498B63824E7E38D001EEE11 /* OptionalText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E498B63724E7E38D001EEE11 /* OptionalText.swift */; };
 		E498B63A24E7E4F7001EEE11 /* SubscriptionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E498B63924E7E4F7001EEE11 /* SubscriptionList.swift */; };
 		E4AB9EDA24E7EF7A00C41998 /* Histogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AB9ED924E7EF7A00C41998 /* Histogram.swift */; };
+		E4C4E3F724F82D9E00B4EBDB /* ConnectionStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4E3F624F82D9E00B4EBDB /* ConnectionStatusIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		E498B63724E7E38D001EEE11 /* OptionalText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalText.swift; sourceTree = "<group>"; };
 		E498B63924E7E4F7001EEE11 /* SubscriptionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionList.swift; sourceTree = "<group>"; };
 		E4AB9ED924E7EF7A00C41998 /* Histogram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Histogram.swift; sourceTree = "<group>"; };
+		E4C4E3F624F82D9E00B4EBDB /* ConnectionStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionStatusIndicator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 				E46A49AE24AE1ABA00BEF852 /* ContentView.swift */,
 				E482DA2224E81A2B00D93612 /* Message.swift */,
 				E482D9E824E8178D00D93612 /* Rush.swift */,
+				E4C4E3F624F82D9E00B4EBDB /* ConnectionStatusIndicator.swift */,
 				E482DA2424E82CD200D93612 /* RushStore.swift */,
 				E498B63924E7E4F7001EEE11 /* SubscriptionList.swift */,
 				E498B63724E7E38D001EEE11 /* OptionalText.swift */,
@@ -257,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E46A49AF24AE1ABA00BEF852 /* ContentView.swift in Sources */,
+				E4C4E3F724F82D9E00B4EBDB /* ConnectionStatusIndicator.swift in Sources */,
 				E498B63824E7E38D001EEE11 /* OptionalText.swift in Sources */,
 				E403B9F824E704F300919330 /* MessageTableView.swift in Sources */,
 				E498B63A24E7E4F7001EEE11 /* SubscriptionList.swift in Sources */,

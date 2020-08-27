@@ -14,7 +14,7 @@ class RushStore: ObservableObject {
 
     @Published var selectedMessageIndex: Int = -1
     @Published var messages: [Message] = []
-    @Published var connectionStatus: CocoaMQTTConnState = .disconnected
+    @Published var connectionStatus: ConnectionStatus = .disconnected
 
     var selectedMessage: Message? {
         if selectedMessageIndex > -1 && !messages.isEmpty {
@@ -58,7 +58,16 @@ class RushStore: ObservableObject {
         _ = mqttClient?.connect()
 
         mqttClient?.didChangeState = { mqtt, state in
-            self.connectionStatus = state
+            switch state {
+            case .initial:
+                self.connectionStatus = .disconnected
+            case .disconnected:
+                self.connectionStatus = .disconnected
+            case .connecting:
+                self.connectionStatus = .connecting
+            case .connected:
+                self.connectionStatus = .connected
+            }
         }
 
         mqttClient?.didConnectAck = { mqtt, ack in

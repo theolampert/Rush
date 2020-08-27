@@ -26,19 +26,24 @@ struct MQTTConfiguration {
 //}
 
 @main
-struct Rush: App {
+struct RushApp: App {
+    let connectionConfig = MQTTConfiguration()
     @StateObject private var store = RushStore()
 
     var body: some Scene {
         WindowGroup {
             ContentView(store: store)
             .toolbar {
+                ConnectionStatusIndicator(
+                    status: store.connectionStatus,
+                    hostname: connectionConfig.host
+                )
                 Button(action: { store.clearMessages() }) {
                     Label("Clear Messages", systemImage: "trash")
                 }
             }
             .onAppear {
-                store.connectClient(mqttConfig: MQTTConfiguration())
+                store.connectClient(mqttConfig: connectionConfig)
             }
         }
     }

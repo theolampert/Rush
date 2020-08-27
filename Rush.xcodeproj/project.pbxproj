@@ -1,0 +1,478 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B4EFD644FBACA185D3B2E0F1 /* Pods_Rush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ACA9691626CDB466311600A /* Pods_Rush.framework */; };
+		E403B9F824E704F300919330 /* MessageTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E403B9F724E704F300919330 /* MessageTableView.swift */; };
+		E46A49AF24AE1ABA00BEF852 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46A49AE24AE1ABA00BEF852 /* ContentView.swift */; };
+		E46A49B124AE1ABE00BEF852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46A49B024AE1ABE00BEF852 /* Assets.xcassets */; };
+		E46A49B424AE1ABE00BEF852 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46A49B324AE1ABE00BEF852 /* Preview Assets.xcassets */; };
+		E482D9E924E8178D00D93612 /* Rush.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482D9E824E8178D00D93612 /* Rush.swift */; };
+		E482DA2324E81A2B00D93612 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482DA2224E81A2B00D93612 /* Message.swift */; };
+		E482DA2524E82CD200D93612 /* RushStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482DA2424E82CD200D93612 /* RushStore.swift */; };
+		E486CA3D24E5330200D70537 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = E486CA3C24E5330200D70537 /* Charts */; };
+		E498B63624E7E16F001EEE11 /* TextPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E498B63524E7E16F001EEE11 /* TextPill.swift */; };
+		E498B63824E7E38D001EEE11 /* OptionalText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E498B63724E7E38D001EEE11 /* OptionalText.swift */; };
+		E498B63A24E7E4F7001EEE11 /* SubscriptionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E498B63924E7E4F7001EEE11 /* SubscriptionList.swift */; };
+		E4AB9EDA24E7EF7A00C41998 /* Histogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AB9ED924E7EF7A00C41998 /* Histogram.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1663C58040CD7696EC2172E1 /* Pods-Rush.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rush.release.xcconfig"; path = "Target Support Files/Pods-Rush/Pods-Rush.release.xcconfig"; sourceTree = "<group>"; };
+		32942AE880DB16F39EB7AA8C /* Pods-Rush.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rush.debug.xcconfig"; path = "Target Support Files/Pods-Rush/Pods-Rush.debug.xcconfig"; sourceTree = "<group>"; };
+		6ACA9691626CDB466311600A /* Pods_Rush.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rush.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E403B9F724E704F300919330 /* MessageTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableView.swift; sourceTree = "<group>"; };
+		E46A49A924AE1ABA00BEF852 /* Rush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rush.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E46A49AE24AE1ABA00BEF852 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E46A49B024AE1ABE00BEF852 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E46A49B324AE1ABE00BEF852 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E46A49B824AE1ABE00BEF852 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E46A49B924AE1ABE00BEF852 /* Rush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Rush.entitlements; sourceTree = "<group>"; };
+		E482D9E824E8178D00D93612 /* Rush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rush.swift; sourceTree = "<group>"; };
+		E482DA2224E81A2B00D93612 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Models/Message.swift; sourceTree = "<group>"; };
+		E482DA2424E82CD200D93612 /* RushStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RushStore.swift; sourceTree = "<group>"; };
+		E498B63524E7E16F001EEE11 /* TextPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPill.swift; sourceTree = "<group>"; };
+		E498B63724E7E38D001EEE11 /* OptionalText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalText.swift; sourceTree = "<group>"; };
+		E498B63924E7E4F7001EEE11 /* SubscriptionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionList.swift; sourceTree = "<group>"; };
+		E4AB9ED924E7EF7A00C41998 /* Histogram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Histogram.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E46A49A624AE1ABA00BEF852 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4EFD644FBACA185D3B2E0F1 /* Pods_Rush.framework in Frameworks */,
+				E486CA3D24E5330200D70537 /* Charts in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7F295AB5B2E5B7233C878B3A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6ACA9691626CDB466311600A /* Pods_Rush.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E355E9D1F494F14C61E4047B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				32942AE880DB16F39EB7AA8C /* Pods-Rush.debug.xcconfig */,
+				1663C58040CD7696EC2172E1 /* Pods-Rush.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E46A49A024AE1ABA00BEF852 = {
+			isa = PBXGroup;
+			children = (
+				E46A49AB24AE1ABA00BEF852 /* Rush */,
+				E46A49AA24AE1ABA00BEF852 /* Products */,
+				E355E9D1F494F14C61E4047B /* Pods */,
+				7F295AB5B2E5B7233C878B3A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E46A49AA24AE1ABA00BEF852 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E46A49A924AE1ABA00BEF852 /* Rush.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E46A49AB24AE1ABA00BEF852 /* Rush */ = {
+			isa = PBXGroup;
+			children = (
+				E403B9F724E704F300919330 /* MessageTableView.swift */,
+				E46A49AE24AE1ABA00BEF852 /* ContentView.swift */,
+				E482DA2224E81A2B00D93612 /* Message.swift */,
+				E482D9E824E8178D00D93612 /* Rush.swift */,
+				E482DA2424E82CD200D93612 /* RushStore.swift */,
+				E498B63924E7E4F7001EEE11 /* SubscriptionList.swift */,
+				E498B63724E7E38D001EEE11 /* OptionalText.swift */,
+				E498B63524E7E16F001EEE11 /* TextPill.swift */,
+				E4AB9ED924E7EF7A00C41998 /* Histogram.swift */,
+				E46A49B024AE1ABE00BEF852 /* Assets.xcassets */,
+				E46A49B824AE1ABE00BEF852 /* Info.plist */,
+				E46A49B924AE1ABE00BEF852 /* Rush.entitlements */,
+				E46A49B224AE1ABE00BEF852 /* Preview Content */,
+			);
+			path = Rush;
+			sourceTree = "<group>";
+		};
+		E46A49B224AE1ABE00BEF852 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				E46A49B324AE1ABE00BEF852 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E46A49A824AE1ABA00BEF852 /* Rush */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E46A49BC24AE1ABE00BEF852 /* Build configuration list for PBXNativeTarget "Rush" */;
+			buildPhases = (
+				A86C44DA85DA2DDFA06FE6EF /* [CP] Check Pods Manifest.lock */,
+				E46A49A524AE1ABA00BEF852 /* Sources */,
+				E46A49A624AE1ABA00BEF852 /* Frameworks */,
+				E46A49A724AE1ABA00BEF852 /* Resources */,
+				D3D329CF1F347979A66A1655 /* [CP] Embed Pods Frameworks */,
+				E4F8A9B924E4685500D211DC /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Rush;
+			packageProductDependencies = (
+				E486CA3C24E5330200D70537 /* Charts */,
+			);
+			productName = Rush;
+			productReference = E46A49A924AE1ABA00BEF852 /* Rush.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E46A49A124AE1ABA00BEF852 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "Theo Lampert";
+				TargetAttributes = {
+					E46A49A824AE1ABA00BEF852 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+				};
+			};
+			buildConfigurationList = E46A49A424AE1ABA00BEF852 /* Build configuration list for PBXProject "Rush" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E46A49A024AE1ABA00BEF852;
+			packageReferences = (
+				E486CA3B24E5330200D70537 /* XCRemoteSwiftPackageReference "swiftui-charts" */,
+			);
+			productRefGroup = E46A49AA24AE1ABA00BEF852 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E46A49A824AE1ABA00BEF852 /* Rush */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E46A49A724AE1ABA00BEF852 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E46A49B424AE1ABE00BEF852 /* Preview Assets.xcassets in Resources */,
+				E46A49B124AE1ABE00BEF852 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A86C44DA85DA2DDFA06FE6EF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Rush-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D3D329CF1F347979A66A1655 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Rush/Pods-Rush-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Rush/Pods-Rush-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Rush/Pods-Rush-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4F8A9B924E4685500D211DC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E46A49A524AE1ABA00BEF852 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E46A49AF24AE1ABA00BEF852 /* ContentView.swift in Sources */,
+				E498B63824E7E38D001EEE11 /* OptionalText.swift in Sources */,
+				E403B9F824E704F300919330 /* MessageTableView.swift in Sources */,
+				E498B63A24E7E4F7001EEE11 /* SubscriptionList.swift in Sources */,
+				E482D9E924E8178D00D93612 /* Rush.swift in Sources */,
+				E482DA2324E81A2B00D93612 /* Message.swift in Sources */,
+				E498B63624E7E16F001EEE11 /* TextPill.swift in Sources */,
+				E482DA2524E82CD200D93612 /* RushStore.swift in Sources */,
+				E4AB9EDA24E7EF7A00C41998 /* Histogram.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E46A49BA24AE1ABE00BEF852 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E46A49BB24AE1ABE00BEF852 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		E46A49BD24AE1ABE00BEF852 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 32942AE880DB16F39EB7AA8C /* Pods-Rush.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Rush/Rush.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Rush/Preview Content\"";
+				DEVELOPMENT_TEAM = BHEZ4UL9V8;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Rush/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.theolampert.Rush;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E46A49BE24AE1ABE00BEF852 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1663C58040CD7696EC2172E1 /* Pods-Rush.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Rush/Rush.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Rush/Preview Content\"";
+				DEVELOPMENT_TEAM = BHEZ4UL9V8;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Rush/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.theolampert.Rush;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E46A49A424AE1ABA00BEF852 /* Build configuration list for PBXProject "Rush" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E46A49BA24AE1ABE00BEF852 /* Debug */,
+				E46A49BB24AE1ABE00BEF852 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E46A49BC24AE1ABE00BEF852 /* Build configuration list for PBXNativeTarget "Rush" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E46A49BD24AE1ABE00BEF852 /* Debug */,
+				E46A49BE24AE1ABE00BEF852 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E486CA3B24E5330200D70537 /* XCRemoteSwiftPackageReference "swiftui-charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spacenation/swiftui-charts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E486CA3C24E5330200D70537 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E486CA3B24E5330200D70537 /* XCRemoteSwiftPackageReference "swiftui-charts" */;
+			productName = Charts;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = E46A49A124AE1ABA00BEF852 /* Project object */;
+}

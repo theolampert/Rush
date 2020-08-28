@@ -34,7 +34,14 @@ struct ConnectionStatusIndicator: View {
             Circle()
                 .frame(width: 10, height: 10, alignment: .center)
                 .foregroundColor(status.label.1)
-            Text("\(status.label.0) | \(hostname)").font(.caption)
+                .transition(.opacity)
+            HStack {
+                Text(status.label.0)
+                    .font(.caption)
+                Divider()
+                Text(hostname)
+                    .font(.caption)
+            }
         }
         .padding(.vertical, 6)
         .padding(.horizontal, 10)

@@ -34,17 +34,21 @@ struct RushApp: App {
         WindowGroup {
             ContentView(store: store)
             .toolbar {
+                Text("\(store.messages.count) messages").font(.footnote)
+                Button(action: { store.clearMessages() }) {
+                    Label("Clear Messages", systemImage: "trash.circle.fill")
+                }
                 ConnectionStatusIndicator(
                     status: store.connectionStatus,
                     hostname: connectionConfig.host
                 )
-                Button(action: { store.clearMessages() }) {
-                    Label("Clear Messages", systemImage: "trash")
-                }
             }
             .onAppear {
                 store.connectClient(mqttConfig: connectionConfig)
             }
+        }.commands {
+            SidebarCommands()
+            ToolbarCommands()
         }
     }
 }

@@ -8,20 +8,14 @@
 
 import SwiftUI
 
-extension RangeReplaceableCollection where Self: StringProtocol {
-    func paddingToLeft(upTo length: Int, using element: Element = "-") -> SubSequence {
-        return repeatElement(element, count: Swift.max(0, length-count)) + suffix(Swift.max(count, count-length))
-    }
-}
-
 struct SubscriptionList: View {
     var subscriptions: [String]
 
     var body: some View {
         List {
             Section(header: HStack {
-                Image(systemName: "staroflife.fill")
-                Text("Subscriptions")
+                Image(systemName: "number.circle.fill")
+                Text("Subscribed Topics")
             }) {
                 ForEach(subscriptions, id: \.self, content: { subscription in
                     Text(subscription)

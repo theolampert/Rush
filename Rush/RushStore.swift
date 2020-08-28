@@ -8,9 +8,11 @@
 
 import Foundation
 import CocoaMQTT
+import Network
 
 class RushStore: ObservableObject {
     var mqttClient: CocoaMQTT?
+    let monitor = NetworkMonitor()
 
     @Published var selectedMessageIndex: Int = -1
     @Published var messages: [Message] = []
@@ -71,6 +73,11 @@ class RushStore: ObservableObject {
         }
 
         mqttClient?.didConnectAck = { mqtt, ack in
+
+            self.monitor.onChange { status in
+                self.connectionStatus = status
+            }
+
             self.mqttClient?.subscribe("dtck/mqtt-timeout-device/e9e7fa09-7cd2-4ca1-91dd-4a914c85590c/#")
             self.mqttClient?.subscribe("dtck/masterbrick-p1-3d0026001951353530353431/aeccc67f-461f-44f2-b2b4-a8dca9cb3219/#")
 //            self.mqttClient?.subscribe("Minion Lair")

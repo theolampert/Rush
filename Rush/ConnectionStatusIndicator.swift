@@ -8,22 +8,6 @@
 
 import SwiftUI
 
-enum ConnectionStatus {
-    case disconnected
-    case connecting
-    case connected
-
-    var label: (String, Color) {
-        switch self {
-        case .disconnected:
-            return ("Disconnected", .red)
-        case .connecting:
-            return ("Connecting", .orange)
-        case .connected:
-            return ("Connected", .green)
-        }
-    }
-}
 
 struct ConnectionStatusIndicator: View {
     let status: ConnectionStatus

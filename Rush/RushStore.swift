@@ -17,6 +17,7 @@ class RushStore: ObservableObject {
     @Published var selectedMessageIndex: Int = -1
     @Published var messages: [Message] = []
     @Published var connectionStatus: ConnectionStatus = .disconnected
+    @Published var currentlyConnectedHostname: String?
 
     var selectedMessage: Message? {
         if selectedMessageIndex > -1 && !messages.isEmpty {

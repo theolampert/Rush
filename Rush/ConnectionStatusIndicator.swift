@@ -8,10 +8,9 @@
 
 import SwiftUI
 
-
 struct ConnectionStatusIndicator: View {
     let status: ConnectionStatus
-    let hostname: String
+    let hostname: String?
 
     var body: some View {
         HStack {
@@ -19,12 +18,12 @@ struct ConnectionStatusIndicator: View {
                 .frame(width: 10, height: 10, alignment: .center)
                 .foregroundColor(status.label.1)
                 .transition(.opacity)
-            HStack {
-                Text(status.label.0)
-                    .font(.caption)
+
+            Text(status.label.0)
+                .font(.caption)
+            if hostname != nil {
                 Divider()
-                Text(hostname)
-                    .font(.caption)
+                OptionalText(text: hostname).font(.caption)
             }
         }
         .padding(.vertical, 6)

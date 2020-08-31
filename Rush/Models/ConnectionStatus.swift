@@ -9,7 +9,6 @@
 import Foundation
 import SwiftUI
 
-
 enum ConnectionStatus {
     case disconnected
     case connecting

@@ -12,7 +12,7 @@ import CocoaMQTT
 import Charts
 
 struct ContentView: View {
-    @ObservedObject var store: RushStore
+    @EnvironmentObject var store: RushStore
 
     var body: some View {
         NavigationView {
@@ -23,28 +23,10 @@ struct ContentView: View {
                     selectedMessageIndex: $store.selectedMessageIndex
                 )
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                VStack(alignment: .leading) {
-                    OptionalText(text: store.selectedMessage?.topic)
-                        .font(.footnote)
-                        .padding(.bottom)
-                        .foregroundColor(.gray)
-                    HStack {
-                        TextPill(text: store.selectedMessage?.topicName)
-                        Spacer()
-                        Text("Time: \(store.selectedMessage?.formattedTimestamp ?? "--")")
-                            .font(.footnote)
-                    }
-                    Divider()
-                    Text("\(store.selectedMessage?.value.data(using: .utf8)?.prettyPrintedJSONString ?? "--")")
-                        .font(Font(NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)))
-                        .foregroundColor(.gray)
-                    Spacer()
-//                    if store.selectedHistory.count > 1 {
-//                        Histogram(data: store.selectedHistory)
-//                    }
-                }.padding()
-                    .background(Color(NSColor.textBackgroundColor))
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                MessageDetail(
+                    selectedMessage: store.selectedMessage,
+                    selectedHistory: store.selectedHistory
+                )
             }
         }
     }

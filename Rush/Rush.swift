@@ -21,70 +21,37 @@ struct MQTTConfiguration {
     }
 }
 
-//struct MQTTConfiguration {
-//    var host = "test.mosquitto.org"
-//    var port: UInt16 = 1883
-//    var username: String?
-//    var password: String?
-//    var tls = false
-//}
-
-struct CreateConnectionForm: View {
-    @EnvironmentObject var store: RushStore
-    @State var configuration: MQTTConfiguration
-
-    var onDismiss: () -> Void
-
-    var body: some View {
-        VStack {
-            Form {
-                HStack {
-                    TextField("Hostname", text: $configuration.host)
-                    TextField("Port", text: $configuration.textPort)
-                }
-                HStack {
-                    TextField("Username", text: $configuration.username)
-                    SecureField("Password", text: $configuration.password)
-                }
-                Toggle("TLS", isOn: $configuration.tls)
-                HStack {
-                    Button("Cancel", action: {
-                        onDismiss()
-                    })
-                    Button("Connect", action: {
-                        store.connectClient(mqttConfig: configuration)
-                        store.currentlyConnectedHostname = configuration.host
-                        onDismiss()
-                    })
-                }
-            }.padding()
-        }
-    }
-}
-
 struct Connection {
     let name: String
     let color: Color
-    let config: MQTTConfiguration
+    var config: MQTTConfiguration
 }
 
 struct ConnectionManager: View {
     @Environment(\.presentationMode) var presentationMode
 
+    @State var selectedConnection: Connection = Connection(name: "", color: Color.orange, config: MQTTConfiguration(
+        host: "",
+        textPort: "8883",
+        username: "",
+        password: "",
+        tls: true
+    ))
+
     var availableConnections: [Connection] = [
-        Connection(name: "Datacake", color: .green, config: MQTTConfiguration(
-            host: "mqtt.datacake.co",
-            textPort: "8883",
-            username: "7be44bafd31e21c4b3f035bc62eec5d2dda1fb91",
-            password: "7be44bafd31e21c4b3f035bc62eec5d2dda1fb91",
-            tls: true
-        )),
         Connection(name: "Mosuitto Test", color: .blue, config: MQTTConfiguration(
-            host: "mqtt.datacake.co",
+            host: "test.mosquitto.org",
             textPort: "1883",
-            username: "7be44bafd31e21c4b3f035bc62eec5d2dda1fb91",
-            password: "7be44bafd31e21c4b3f035bc62eec5d2dda1fb91",
-            tls: true
+            username: "",
+            password: "",
+            tls: false
+        )),
+        Connection(name: "HiveMQ Test", color: .green, config: MQTTConfiguration(
+            host: "broker.mqttdashboard.com",
+            textPort: "8000",
+            username: "",
+            password: "",
+            tls: false
         ))
     ]
 
@@ -98,18 +65,14 @@ struct ConnectionManager: View {
                                 .frame(width: 10, height: 10, alignment: .center)
                                 .foregroundColor(connection.color)
                             Text(connection.name)
+                        }.onTapGesture {
+                            selectedConnection = connection
                         }
                     }
                 }
             }
             CreateConnectionForm(
-                configuration: MQTTConfiguration(
-                    host: "mqtt.datacake.co",
-                    textPort: "8883",
-                    username: "7be44bafd31e21c4b3f035bc62eec5d2dda1fb91",
-                    password: "7be44bafd31e21c4b3f035bc62eec5d2dda1fb91",
-                    tls: true
-                ),
+                configuration: $selectedConnection.config,
                 onDismiss: {
                     presentationMode.wrappedValue.dismiss()
                 }

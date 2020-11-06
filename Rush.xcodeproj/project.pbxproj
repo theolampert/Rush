@@ -19,6 +19,7 @@
 		E482E0C824F93DD900DD532D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482E0C724F93DD900DD532D /* Message.swift */; };
 		E482E0CB24F93DFE00DD532D /* ConnectionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482E0CA24F93DFE00DD532D /* ConnectionStatus.swift */; };
 		E482E0CD24F93E8A00DD532D /* MessageDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482E0CC24F93E8A00DD532D /* MessageDetail.swift */; };
+		E48537C225545D7D00526553 /* CreateConnectionForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48537C125545D7D00526553 /* CreateConnectionForm.swift */; };
 		E486CA3D24E5330200D70537 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = E486CA3C24E5330200D70537 /* Charts */; };
 		E498B63624E7E16F001EEE11 /* TextPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E498B63524E7E16F001EEE11 /* TextPill.swift */; };
 		E498B63824E7E38D001EEE11 /* OptionalText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E498B63724E7E38D001EEE11 /* OptionalText.swift */; };
@@ -45,6 +46,7 @@
 		E482E0C724F93DD900DD532D /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		E482E0CA24F93DFE00DD532D /* ConnectionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionStatus.swift; sourceTree = "<group>"; };
 		E482E0CC24F93E8A00DD532D /* MessageDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetail.swift; sourceTree = "<group>"; };
+		E48537C125545D7D00526553 /* CreateConnectionForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateConnectionForm.swift; sourceTree = "<group>"; };
 		E498B63524E7E16F001EEE11 /* TextPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPill.swift; sourceTree = "<group>"; };
 		E498B63724E7E38D001EEE11 /* OptionalText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalText.swift; sourceTree = "<group>"; };
 		E498B63924E7E4F7001EEE11 /* SubscriptionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionList.swift; sourceTree = "<group>"; };
@@ -103,17 +105,18 @@
 		E46A49AB24AE1ABA00BEF852 /* Rush */ = {
 			isa = PBXGroup;
 			children = (
+				E482E0C924F93DDE00DD532D /* Models */,
+				E482E0BF24F9217F00DD532D /* Extensions */,
 				E403B9F724E704F300919330 /* MessageTableView.swift */,
 				E46A49AE24AE1ABA00BEF852 /* ContentView.swift */,
 				E482E0CC24F93E8A00DD532D /* MessageDetail.swift */,
-				E482E0BF24F9217F00DD532D /* Extensions */,
 				E482D9E824E8178D00D93612 /* Rush.swift */,
+				E48537C125545D7D00526553 /* CreateConnectionForm.swift */,
 				E4C4E3F624F82D9E00B4EBDB /* ConnectionStatusIndicator.swift */,
 				E482DA2424E82CD200D93612 /* RushStore.swift */,
 				E482E0C424F93CDF00DD532D /* NetworkMonitor.swift */,
 				E498B63924E7E4F7001EEE11 /* SubscriptionList.swift */,
 				E498B63724E7E38D001EEE11 /* OptionalText.swift */,
-				E482E0C924F93DDE00DD532D /* Models */,
 				E498B63524E7E16F001EEE11 /* TextPill.swift */,
 				E4AB9ED924E7EF7A00C41998 /* Histogram.swift */,
 				E46A49B024AE1ABE00BEF852 /* Assets.xcassets */,
@@ -289,6 +292,7 @@
 			files = (
 				E46A49AF24AE1ABA00BEF852 /* ContentView.swift in Sources */,
 				E482E0C524F93CDF00DD532D /* NetworkMonitor.swift in Sources */,
+				E48537C225545D7D00526553 /* CreateConnectionForm.swift in Sources */,
 				E4C4E3F724F82D9E00B4EBDB /* ConnectionStatusIndicator.swift in Sources */,
 				E482E0C124F9219A00DD532D /* Data+prettyPrintedJSONString.swift in Sources */,
 				E498B63824E7E38D001EEE11 /* OptionalText.swift in Sources */,

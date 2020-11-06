@@ -9,6 +9,7 @@
 import Foundation
 import CocoaMQTT
 import Network
+import Combine
 
 class RushStore: ObservableObject {
     var mqttClient: CocoaMQTT?
@@ -18,6 +19,13 @@ class RushStore: ObservableObject {
     @Published var messages: [Message] = []
     @Published var connectionStatus: ConnectionStatus = .disconnected
     @Published var currentlyConnectedHostname: String?
+    @Published var subscriptions: [String] = []
+
+    var cancellables: [AnyCancellable] = []
+
+    init(mqttClient: CocoaMQTT? = nil) {
+        self.mqttClient = mqttClient
+    }
 
     var selectedMessage: Message? {
         if selectedMessageIndex > -1 && !messages.isEmpty {
@@ -30,11 +38,6 @@ class RushStore: ObservableObject {
         return messages
             .filter { $0.topic == selectedMessage?.topic }
             .compactMap { Float($0.value) }
-    }
-
-    var subscriptions: [String] {
-        guard let client = mqttClient else { return [] }
-        return Array(client.subscriptions.keys)
     }
 
     func clearMessages() {
@@ -79,13 +82,10 @@ class RushStore: ObservableObject {
                 self.connectionStatus = status
             }
 
-            self.mqttClient?.subscribe("dtck/mqtt-timeout-device/e9e7fa09-7cd2-4ca1-91dd-4a914c85590c/#")
-            self.mqttClient?.subscribe("dtck/masterbrick-p1-3d0026001951353530353431/aeccc67f-461f-44f2-b2b4-a8dca9cb3219/#")
-//            self.mqttClient?.subscribe("Minion Lair")
             self.mqttClient?.didReceiveMessage = { mqtt, message, id in
                 if let msg = message.string {
                     self.messages = self.messages + [Message(
-                        id: id,
+                        id: UUID(),
                         topic: message.topic,
                         value: msg,
                         qos: message.qos,
@@ -94,6 +94,16 @@ class RushStore: ObservableObject {
                 }
             }
         }
+    }
+
+    func subscribeTopic(_ topic: String) {
+        subscriptions.append(topic)
+        self.mqttClient?.subscribe(topic)
+    }
+
+    func unsubscribeTopic(_ topic: String) {
+        subscriptions = subscriptions.filter { $0 != topic }
+        self.mqttClient?.unsubscribe(topic)
     }
 }
 

@@ -25,13 +25,14 @@ struct MessageDetail: View {
                     .font(.footnote)
             }
             Divider()
-            Text("\(selectedMessage?.value.data(using: .utf8)?.prettyPrintedJSONString ?? "--")")
-                .font(Font(NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)))
-                .foregroundColor(.gray)
+            selectedMessage.map {
+                Text($0.value.data(using: .utf8)?.prettyPrintedJSONString ?? "--")
+                    .font(Font(NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)))
+            }
             Spacer()
-//                    if store.selectedHistory.count > 1 {
-//                        Histogram(data: store.selectedHistory)
-//                    }
+            if !selectedHistory.isEmpty {
+                Histogram(data: selectedHistory)
+            }
         }.padding()
             .background(Color(NSColor.textBackgroundColor))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -41,7 +42,7 @@ struct MessageDetail: View {
 struct MessageDetail_Previews: PreviewProvider {
     static var previews: some View {
         MessageDetail(
-            selectedMessage: Message(id: 1, topic: "dtck", value: "foobar", qos: .qos0, timestamp: 0.11),
+            selectedMessage: Message(id: UUID(), topic: "dtck", value: "foobar", qos: .qos0, timestamp: 0.11),
             selectedHistory: []
         )
     }

@@ -16,10 +16,10 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            SubscriptionList(subscriptions: store.subscriptions)
+            SubscriptionList(topics: store.subscriptions, addTopic: store.subscribeTopic, removeTopic: store.unsubscribeTopic)
             VSplitView {
                 MessageTableView(
-                    messages: Array(store.messages).sorted { $0.id < $1.id },
+                    messages: Array(store.messages).sorted { $0.timestamp < $1.timestamp },
                     selectedMessageIndex: $store.selectedMessageIndex
                 )
                     .frame(maxWidth: .infinity, maxHeight: .infinity)

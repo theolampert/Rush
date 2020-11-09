@@ -21,62 +21,72 @@ struct Styles {
     static let blue = Color(NSColor(red: 0.561, green: 0.526, blue: 0.792, alpha: 1.0))
 }
 
-func buildDisclosureTree(dict: [String: Any], title: Text = Text("Root").font(Styles.mono).foregroundColor(.secondary)) -> Item {
+func dictToItem(key: String, value: Any) -> Item {
+    switch value {
+    case let label as String:
+        let key = Text(key)
+            .font(Styles.mono)
+            .foregroundColor(Styles.green)
+        + Text(": ")
+            .font(Styles.mono)
+            .foregroundColor(Styles.green)
+        + Text(label)
+            .font(Styles.mono)
+            .foregroundColor(Styles.green)
+        return Item(title: key, children: nil)
+    case let label as Int:
+        let key = Text(key)
+            .font(Styles.mono)
+            .foregroundColor(Styles.green)
+        + Text(": ")
+            .font(Styles.mono)
+            .foregroundColor(Styles.green)
+        + Text(label.description)
+            .font(Styles.mono)
+            .foregroundColor(Styles.blue)
+        return Item(title: key, children: nil)
+    case let label as Double:
+        let key = Text(key)
+            .font(Styles.mono)
+            .foregroundColor(Styles.green)
+        + Text(": ")
+            .font(Styles.mono)
+            .foregroundColor(Styles.green)
+        + Text(label.description)
+            .font(Styles.mono)
+            .foregroundColor(Styles.blue)
+        return Item(title: key, children: nil)
+    case let label as [String: Any]:
+        let key = Text(key)
+            .font(Styles.mono)
+            .foregroundColor(Styles.green)
+        + Text(": ")
+        + Text("Dictionary")
+            .font(Styles.mono)
+            .foregroundColor(.secondary)
+        let child: Item = buildDisclosureTree(dict: label, title: key)
+        return child
 
-    var root = Item(title: title, children: [])
-    dict.forEach { next in
-        switch dict[next.key] {
-        case let label as String:
-            let key = Text(next.key)
-                .font(Styles.mono)
-                .foregroundColor(Styles.green)
-            + Text(": ")
-                .font(Styles.mono)
-                .foregroundColor(Styles.green)
-            + Text(label)
-                .font(Styles.mono)
-                .foregroundColor(Styles.green)
-            root.children?.append(Item(title: key, children: nil))
-        case let label as Int:
-            let key = Text(next.key)
-                .font(Styles.mono)
-                .foregroundColor(Styles.green)
-            + Text(": ")
-                .font(Styles.mono)
-                .foregroundColor(Styles.green)
-            + Text(label.description)
-                .font(Styles.mono)
-                .foregroundColor(Styles.blue)
-            root.children?.append(Item(title: key, children: nil))
-        case let label as [String: Any]:
-            let key = Text(next.key)
-                .font(Styles.mono)
-                .foregroundColor(Styles.green)
-            + Text(": ")
-            + Text("Dictionary")
-                .font(Styles.mono)
-                .foregroundColor(.secondary)
-            let child: Item = buildDisclosureTree(dict: label, title: key)
-            root.children?.append(child)
-
-        case let label as [[String: Any]]:
-            let key = Text(next.key)
-                .font(Styles.mono)
-                .foregroundColor(Styles.green)
-            + Text(": ")
-            + Text("Dictionary")
-                .font(Styles.mono)
-                .foregroundColor(.secondary)
-            let items = label.map { buildDisclosureTree(dict: $0, title: Text(next.key)) }
-            root.children?.append(Item(title: Text(next.key), children: items))
-//            let child: Item = buildDisclosureTree(dict: label, title: key)
-//            root.children?.append(child)
-        default:
-            root.children?.append(Item(title: Text("Fuck"), children: nil))
-        }
+    case let label as [[String: Any]]:
+        let key = Text(key)
+            .font(Styles.mono)
+            .foregroundColor(Styles.green)
+        + Text(": ")
+        + Text("Array \(label.count)")
+            .font(Styles.mono)
+            .foregroundColor(.secondary)
+        let items = label.flatMap { item in item.map { dictToItem(key: $0.key, value: item[$0.key]) } }
+        return Item(title: key, children: items)
+    default:
+        return Item(title: Text("Fuck"), children: nil)
     }
+}
 
-    return root
+func buildDisclosureTree(dict: [String: Any], title: Text = Text("Root").font(Styles.mono).foregroundColor(.secondary)) -> Item {
+    let children = dict.map { next in
+        dictToItem(key: next.key, value: dict[next.key])
+    }
+    return Item(title: title, children: children)
 
 }
 
@@ -100,11 +110,12 @@ struct DisclosureTree_Previews: PreviewProvider {
             "foo": "bar",
             "bar": "foo",
             "boo": 2,
+            "blerp": 2.000000001234,
             "baz": ["boop": "Bap", "ma": "baaa", "plunk": 1],
             "bam": [1, 2, 3, 4],
             "rap": [
                 ["foo": 1],
-                ["bar": 2]
+                ["bar": ["boo": 2]]
             ]
         ])
     }

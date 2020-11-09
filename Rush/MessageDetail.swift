@@ -27,6 +27,8 @@ struct MessageDetail: View {
     var selectedHistory: [Float]
 
     @State private var selection: Int = 0
+    
+    let padding = 10
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -34,7 +36,9 @@ struct MessageDetail: View {
                 .font(.footnote)
                 .padding(.bottom)
                 .foregroundColor(.gray)
+                .padding(padding)
             Divider()
+                .padding(padding)
             HStack {
                 HStack {
                     Text("Raw")
@@ -56,8 +60,9 @@ struct MessageDetail: View {
                 Spacer()
                 Text("\(selectedMessage?.formattedTimestamp ?? "--")")
                     .font(.footnote)
-            }.padding(.horizontal, 5)
+            }.padding(.horizontal, padding)
             Divider()
+                .padding(padding)
             VStack(alignment: .leading) {
                 if selection == 0 {
                     selectedMessage.map { msg in

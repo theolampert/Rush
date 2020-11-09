@@ -107,10 +107,10 @@ class RushStore: ObservableObject {
         mqttClient?.didConnectAck = { [weak self] mqtt, ack in
             guard self != nil else { return }
 
-//            self?.subscribeTopic("/fmeag/#")
+            self?.subscribeTopic("/fmeag/#")
 //            self?.subscribeTopic("ag2000/Nora/home-assistant/weather/smhi_home/forecast")
 //            self?.subscribeTopic("EBO/Data")
-            self?.subscribeTopic("#")
+//            self?.subscribeTopic("#")
 
         }
     }

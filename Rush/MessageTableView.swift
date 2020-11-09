@@ -11,36 +11,49 @@ import SwiftUI
 import AppKit
 
 struct MessageTableView: NSViewRepresentable {
-    var messages: [Message] = []
-    @Binding var selectedMessageIndex: Int
+    @EnvironmentObject var store: RushStore
 
-    func makeCoordinator() -> Coordinator {
-        return Coordinator(messages: messages, parent: self)
+    internal func makeCoordinator() -> Coordinator {
+        return Coordinator(messages: store.messages, parent: self)
     }
 
-    func makeNSView(context: NSViewRepresentableContext<MessageTableView>) -> NSView {
+    internal func makeNSView(context: NSViewRepresentableContext<MessageTableView>) -> NSView {
         let scrollView = NSScrollView()
         scrollView.hasVerticalScroller = true
         scrollView.documentView = context.coordinator.tableView
+
         return scrollView
     }
 
-    func updateNSView(_ nsView: NSView, context: NSViewRepresentableContext<MessageTableView>) {
-        context.coordinator.messages = messages
+    internal func updateNSView(_ nsView: NSView, context: NSViewRepresentableContext<MessageTableView>) {
+        if context.coordinator.messages.count != store.messages.count {
+            context.coordinator.messages = store.messages
+        }
+        context.coordinator.autoscroll = store.autoscroll
     }
 }
 
 extension MessageTableView {
-    class Coordinator: NSObject, NSTableViewDataSource, NSTableViewDelegate {
+    final class Coordinator: NSObject, NSTableViewDataSource, NSTableViewDelegate {
         var parent: MessageTableView
+        var autoscroll: Bool = true
 
         var messages: [Message] {
             didSet {
-                let indexes = tableView.selectedRowIndexes
-                tableView.reloadData()
-                tableView.selectRowIndexes(indexes, byExtendingSelection: false)
-                if messages.count > 0 {
-                    tableView.scrollRowToVisible(messages.count - 1)
+
+                if messages.isEmpty {
+                    tableView.reloadData()
+                }
+
+                tableView.beginUpdates()
+                tableView.insertRows(at: IndexSet(integer: messages.count - 1), withAnimation: .effectFade)
+                tableView.endUpdates()
+
+                if messages.count > 0 && autoscroll {
+                    NSAnimationContext.runAnimationGroup({ [self] context in
+                        context.allowsImplicitAnimation = true
+                        tableView.scrollRowToVisible(messages.count - 1)
+                    }, completionHandler: nil)
                 }
             }
         }
@@ -51,14 +64,11 @@ extension MessageTableView {
         }
 
         private enum Column: String, CaseIterable {
-            case id, topic, value, qos, timestamp
+            case topic, value, size, qos, timestamp
 
             var nsColumn: NSTableColumn {
                 let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(self.rawValue))
                 switch self {
-                case .id:
-                    column.title = NSLocalizedString("ID", comment: "")
-
                 case .topic:
                     column.title = NSLocalizedString("Topic", comment: "")
 
@@ -68,6 +78,9 @@ extension MessageTableView {
                 case .qos:
                     column.title = NSLocalizedString("QoS", comment: "")
 
+                case .size:
+                    column.title = NSLocalizedString("Size (bytes)", comment: "")
+
                 case .timestamp:
                     column.title = NSLocalizedString("Time", comment: "")
                 }
@@ -76,7 +89,7 @@ extension MessageTableView {
             }
         }
 
-        lazy var tableView: NSTableView = {
+        lazy var tableView: NSTableView = { [weak self] in
             let tableView = NSTableView(frame: .zero)
             tableView.delegate = self
             tableView.dataSource = self
@@ -89,20 +102,18 @@ extension MessageTableView {
             Column.allCases.forEach { column in
                 tableView.addTableColumn(column.nsColumn)
             }
+
             return tableView
         }()
 
         // MARK: - NSTableViewDelegate
-        func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        internal func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
             guard let identifier = tableColumn?.identifier, let column = Column(rawValue: identifier.rawValue) else { return nil }
 
             let text: String
             let message = messages[row]
 
             switch column {
-            case .id:
-                text = message.id.description
-
             case .topic:
                 text = message.topicName
 
@@ -112,31 +123,36 @@ extension MessageTableView {
             case .qos:
                 text = message.qos.description
 
+            case .size:
+                text = message.sizeLabel
+
             case .timestamp:
                 text = message.formattedTimestamp
             }
 
             if let textField = tableView.makeView(withIdentifier: identifier, owner: nil) as? NSTextField {
+                textField.drawsBackground = false
                 textField.stringValue = text
                 return textField
             } else {
                 let textField = NSTextField(labelWithString: text)
+                textField.drawsBackground = false
                 textField.font = NSFont.monospacedSystemFont(ofSize: 11, weight: .regular)
                 textField.identifier = identifier
                 return textField
             }
         }
 
-        func tableViewSelectionIsChanging(_ notification: Notification) {
+        internal func tableViewSelectionIsChanging(_ notification: Notification) {
             guard let object = notification.object else { return }
             guard let tableView = (object as? NSTableView) else { return }
             let selection = tableView.selectedRow
-            if parent.selectedMessageIndex != selection {
-                parent.selectedMessageIndex = selection
+            if parent.store.selectedMessageIndex != selection {
+                parent.store.selectedMessageIndex = selection
             }
         }
 
-        func numberOfRows(in tableView: NSTableView) -> Int {
+        internal func numberOfRows(in tableView: NSTableView) -> Int {
             return messages.count
         }
     }

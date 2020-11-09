@@ -19,7 +19,8 @@ class RushStore: ObservableObject {
     @Published var messages: [Message] = []
     @Published var connectionStatus: ConnectionStatus = .disconnected
     @Published var currentlyConnectedHostname: String?
-    @Published var subscriptions: [String] = []
+    @Published var topics: [String] = []
+    @Published var autoscroll: Bool = false
 
     var cancellables: [AnyCancellable] = []
 
@@ -42,13 +43,15 @@ class RushStore: ObservableObject {
 
     func clearMessages() {
         selectedMessageIndex = -1
-        messages = []
+        messages.removeAll()
     }
 
     func connectClient(mqttConfig: MQTTConfiguration) {
         if let mqttClient = mqttClient {
             mqttClient.disconnect()
         }
+
+        self.currentlyConnectedHostname = mqttConfig.host
 
         self.mqttClient = CocoaMQTT(
             clientID: String(ProcessInfo().processIdentifier),
@@ -63,46 +66,62 @@ class RushStore: ObservableObject {
 //        mqttClient?.logLevel = .debug
         _ = mqttClient?.connect()
 
-        mqttClient?.didChangeState = { mqtt, state in
+        mqttClient?.didChangeState = { [weak self] mqtt, state in
+            guard self != nil else { return }
             switch state {
             case .initial:
-                self.connectionStatus = .disconnected
+                self?.connectionStatus = .disconnected
             case .disconnected:
-                self.connectionStatus = .disconnected
+                self?.connectionStatus = .disconnected
             case .connecting:
-                self.connectionStatus = .connecting
+                self?.connectionStatus = .connecting
             case .connected:
-                self.connectionStatus = .connected
+                self?.connectionStatus = .connected
             }
         }
 
-        mqttClient?.didConnectAck = { mqtt, ack in
-
-            self.monitor.onChange { status in
-                self.connectionStatus = status
-            }
-
-            self.mqttClient?.didReceiveMessage = { mqtt, message, id in
-                if let msg = message.string {
-                    self.messages = self.messages + [Message(
+        mqttClient?.didReceiveMessage = { [weak self] mqtt, message, id in
+            guard self != nil else { return }
+            let bcf = ByteCountFormatter()
+            bcf.allowedUnits = [.useBytes]
+            bcf.countStyle = .file
+            let size = bcf.string(fromByteCount: Int64(message.payload.count))
+            if let msg = message.string {
+                self?.messages.append(
+                    Message(
                         id: UUID(),
                         topic: message.topic,
                         value: msg,
+                        sizeLabel: size,
                         qos: message.qos,
                         timestamp: Date().timeIntervalSince1970
-                    )]
-                }
+                    )
+                )
             }
+        }
+
+        monitor.onChange { [weak self] status in
+            self?.connectionStatus = status
+        }
+
+        mqttClient?.didConnectAck = { [weak self] mqtt, ack in
+            guard self != nil else { return }
+
+//            self?.subscribeTopic("/fmeag/#")
+//            self?.subscribeTopic("ag2000/Nora/home-assistant/weather/smhi_home/forecast")
+//            self?.subscribeTopic("EBO/Data")
+            self?.subscribeTopic("#")
+
         }
     }
 
     func subscribeTopic(_ topic: String) {
-        subscriptions.append(topic)
+        topics = topics + [topic]
         self.mqttClient?.subscribe(topic)
     }
 
     func unsubscribeTopic(_ topic: String) {
-        subscriptions = subscriptions.filter { $0 != topic }
+        topics = topics.filter { $0 != topic }
         self.mqttClient?.unsubscribe(topic)
     }
 }

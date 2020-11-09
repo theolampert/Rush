@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct CreateConnectionForm: View {
-    @EnvironmentObject var store: RushStore
+    var onConnect: (MQTTConfiguration) -> Void
     @Binding var configuration: MQTTConfiguration
 
     var onDismiss: () -> Void
@@ -31,8 +31,7 @@ struct CreateConnectionForm: View {
                         onDismiss()
                     })
                     Button("Connect", action: {
-                        store.connectClient(mqttConfig: configuration)
-                        store.currentlyConnectedHostname = configuration.host
+                        onConnect(configuration)
                         onDismiss()
                     })
                 }

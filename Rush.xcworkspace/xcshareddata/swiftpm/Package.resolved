@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "Highlight",
-        "repositoryURL": "git@github.com:nkristek/Highlight.git",
-        "state": {
-          "branch": null,
-          "revision": "9b29aa54d09f298705c220ce44d8557addd96a6b",
-          "version": "0.3.0"
-        }
-      },
-      {
         "package": "Shapes",
         "repositoryURL": "https://github.com/swift-extensions/shapes.git",
         "state": {

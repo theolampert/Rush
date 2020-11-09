@@ -9,21 +9,20 @@
 import SwiftUI
 
 struct ConnectionStatusIndicator: View {
-    let status: ConnectionStatus
-    let hostname: String?
+    @EnvironmentObject private var store: RushStore
 
     var body: some View {
         HStack {
             Circle()
                 .frame(width: 10, height: 10, alignment: .center)
-                .foregroundColor(status.label.1)
+                .foregroundColor(store.connectionStatus.label.1)
                 .transition(.opacity)
 
-            Text(status.label.0)
+            Text(store.connectionStatus.label.0)
                 .font(.caption)
-            if hostname != nil {
+            if store.currentlyConnectedHostname != nil {
                 Divider()
-                OptionalText(text: hostname).font(.caption)
+                OptionalText(text: store.currentlyConnectedHostname).font(.caption)
             }
         }
         .padding(.vertical, 6)
@@ -37,6 +36,6 @@ struct ConnectionStatusIndicator: View {
 
 struct ConnectionStatusIndicator_Previews: PreviewProvider {
     static var previews: some View {
-        ConnectionStatusIndicator(status: .disconnected, hostname: "mqtt.datacake.de")
+        ConnectionStatusIndicator()
     }
 }

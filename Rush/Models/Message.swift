@@ -13,6 +13,7 @@ struct Message: Identifiable {
     let id: UUID
     let topic: String
     let value: String
+    let sizeLabel: String
     let qos: CocoaMQTTQOS
     let timestamp: Double
 

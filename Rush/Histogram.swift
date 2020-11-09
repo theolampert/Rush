@@ -13,9 +13,9 @@ struct Histogram: View {
     var data: [Float] = []
     var body: some View {
         Chart(data: data)
-        .chartStyle(
-            LineChartStyle(.line, lineColor: .blue, lineWidth: 1)
-        )
+            .chartStyle(
+                LineChartStyle(.line, lineColor: .blue, lineWidth: 1)
+            )
     }
 }
 

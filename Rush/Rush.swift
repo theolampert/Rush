@@ -9,24 +9,6 @@
 import SwiftUI
 import CocoaMQTT
 
-struct MQTTConfiguration {
-    var host: String
-    var textPort: String
-    var username: String
-    var password: String
-    var tls = true
-
-    var port: UInt16 {
-        UInt16(textPort)!
-    }
-}
-
-struct Connection {
-    let name: String
-    let color: Color
-    var config: MQTTConfiguration
-}
-
 private let store = RushStore()
 
 @main
@@ -43,7 +25,7 @@ struct RushApp: App {
                 })
                 .environmentObject(store)
                 .toolbar {
-                    MainToolbar(presenting: $presenting, autoscroll: store.autoscroll, clearMessages: store.clearMessages, toggleAutoscroll: { store.autoscroll.toggle() })
+                    MainToolbar(presenting: $presenting)
                         .environmentObject(store)
                 }
         }.commands {

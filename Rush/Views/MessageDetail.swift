@@ -28,7 +28,7 @@ struct MessageDetail: View {
 
     @State private var selection: Int = 0
     
-    let padding = 10
+    let padding: CGFloat = 10
 
     var body: some View {
         VStack(alignment: .leading) {

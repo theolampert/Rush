@@ -9,27 +9,24 @@
 import SwiftUI
 
 struct MessageCountIndicator: View {
-    @EnvironmentObject private var store: RushStore
+    var count: Int
 
     var body: some View {
-        Text("\(store.messages.count) messages").font(.footnote)
+        Text("\(count) messages").font(.footnote)
     }
 }
 
 struct MainToolbar: View {
     @Binding var presenting: Bool
-
-    var autoscroll: Bool
-    var clearMessages: () -> Void
-    var toggleAutoscroll: () -> Void
+    @EnvironmentObject private var store: RushStore
 
     var body: some View {
-        MessageCountIndicator()
-        Button(action: { clearMessages() }) {
+        MessageCountIndicator(count: store.messages.count)
+        Button(action: { store.clearMessages() }) {
             Label("Clear Messages", systemImage: "trash.circle.fill")
         }
-        Button(action: { toggleAutoscroll() }) {
-            Label("Clear Messages", systemImage: autoscroll ? "pause.circle.fill" : "play.circle.fill")
+        Button(action: { store.autoscroll.toggle() }) {
+            Label("Toggle Autoscroll", systemImage: store.autoscroll ? "pause.circle.fill" : "play.circle.fill")
         }
         ConnectionStatusIndicator()
         MenuButton(label: Image(systemName: "dot.radiowaves.left.and.right")) {
@@ -40,8 +37,8 @@ struct MainToolbar: View {
     }
 }
 
-//struct MainToolbar_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MainToolbar(presenting: .constant(false))
-//    }
-//}
+struct MainToolbar_Previews: PreviewProvider {
+    static var previews: some View {
+        MainToolbar(presenting: .constant(false))
+    }
+}

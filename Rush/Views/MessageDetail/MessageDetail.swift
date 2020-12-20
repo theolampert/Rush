@@ -46,7 +46,7 @@ struct MessageDetail: View {
 struct MessageDetail_Previews: PreviewProvider {
     static var previews: some View {
         MessageDetail(
-            selectedMessage: Message(id: UUID(), topic: "dtck", value: "{\"sid\":{ \"foo\": \"bar\" }}", sizeLabel: "12 bytes", qos: .qos0, timestamp: 0.11),
+            selectedMessage: Message(id: UUID(), topic: "dtck", value: "{\"sid\":{ \"foo\": \"bar\" }}", qos: .qos0, timestamp: 0.11),
             selectedHistory: []
         )
     }

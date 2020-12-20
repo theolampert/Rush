@@ -36,7 +36,7 @@ struct MainToolbar: View {
                 }
             } else {
                 Button("Disconnect") {
-                    self.presenting = true
+                    self.store.disconnectClient()
                 }
             }
         }

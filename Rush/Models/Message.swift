@@ -13,7 +13,6 @@ struct Message: Identifiable {
     let id: UUID
     let topic: String
     let value: String
-    let sizeLabel: String
     let qos: CocoaMQTTQOS
     let timestamp: Double
 
@@ -24,6 +23,13 @@ struct Message: Identifiable {
         dateFormatter.timeZone = TimeZone.current
         dateFormatter.dateFormat = "HH:mm:ss.SSSSSSZZ"
         return dateFormatter.string(from: date)
+    }
+    
+    var sizeLabel: String {
+        let bcf = ByteCountFormatter()
+        bcf.allowedUnits = [.useBytes]
+        bcf.countStyle = .file
+        return bcf.string(fromByteCount: Int64(value.count))
     }
 
     var topicName: String {

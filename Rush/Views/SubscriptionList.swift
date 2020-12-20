@@ -17,27 +17,29 @@ import SwiftUI
 
     var body: some View {
         List {
-            HStack {
-                TextField("Add a topic", text: $topicName)
-                Image(systemName: "plus.circle.fill")
-                    .foregroundColor(topicName.isEmpty ? .secondary : .green)
-                    .onTapGesture {
-                        if !topicName.isEmpty {
-                            self.addTopic(topicName)
-                            self.topicName = ""
+            Section(header: Text("Add a topic")) {
+                HStack {
+                    TextField("", text: $topicName)
+                        .background(Color.gray.padding())
+                    Image(systemName: "plus.circle.fill")
+                        .foregroundColor(topicName.isEmpty ? .secondary : .green)
+                        .onTapGesture {
+                            if !topicName.isEmpty {
+                                self.addTopic(topicName)
+                                self.topicName = ""
+                            }
                         }
-                    }
+                }
             }
-            Section(header: HStack {
-                Image(systemName: "number.circle.fill")
-                Text("Subscribed Topics")
-            }) {
+            Section(header: Text("Subscribed Topics")) {
                 ForEach(topics, id: \.self, content: { topic in
                     HStack {
+                        Image(systemName: "number")
+                            .foregroundColor(.secondary)
                         Text(topic)
                         Spacer()
                         Image(systemName: "multiply.circle.fill")
-                            .foregroundColor(.red)
+                            .foregroundColor(.secondary)
                             .onTapGesture {
                                 self.removeTopic(topic)
                             }

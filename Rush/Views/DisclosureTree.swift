@@ -14,66 +14,67 @@ fileprivate struct Item: Identifiable {
     var children: [Item]?
 }
 
-fileprivate struct Styles {
+fileprivate struct Theme {
     static let mono = Font(NSFont.monospacedSystemFont(ofSize: 12, weight: .regular))
     static let red = Color(NSColor(red: 0.91, green: 0.518, blue: 0.455, alpha: 1.0))
     static let green = Color(NSColor(red: 0.482, green: 0.682, blue: 0.588, alpha: 1.0))
     static let blue = Color(NSColor(red: 0.561, green: 0.526, blue: 0.792, alpha: 1.0))
 }
 
+
 fileprivate func dictToItem(key: String, value: Any) -> Item {
     switch value {
     case let label as String:
         let key = Text(key)
-            .font(Styles.mono)
-            .foregroundColor(Styles.green)
+            .font(Theme.mono)
+            .foregroundColor(Theme.green)
         + Text(": ")
-            .font(Styles.mono)
-            .foregroundColor(Styles.green)
+            .font(Theme.mono)
+            .foregroundColor(Theme.green)
         + Text(label)
-            .font(Styles.mono)
-            .foregroundColor(Styles.green)
+            .font(Theme.mono)
+            .foregroundColor(Theme.green)
         return Item(title: key, children: nil)
     case let label as Int:
         let key = Text(key)
-            .font(Styles.mono)
-            .foregroundColor(Styles.green)
+            .font(Theme.mono)
+            .foregroundColor(Theme.green)
         + Text(": ")
-            .font(Styles.mono)
-            .foregroundColor(Styles.green)
+            .font(Theme.mono)
+            .foregroundColor(Theme.green)
         + Text(label.description)
-            .font(Styles.mono)
-            .foregroundColor(Styles.blue)
+            .font(Theme.mono)
+            .foregroundColor(Theme.blue)
         return Item(title: key, children: nil)
     case let label as Double:
         let key = Text(key)
-            .font(Styles.mono)
-            .foregroundColor(Styles.green)
+            .font(Theme.mono)
+            .foregroundColor(Theme.green)
         + Text(": ")
-            .font(Styles.mono)
-            .foregroundColor(Styles.green)
+            .font(Theme.mono)
+            .foregroundColor(Theme.green)
         + Text(label.description)
-            .font(Styles.mono)
-            .foregroundColor(Styles.blue)
+            .font(Theme.mono)
+            .foregroundColor(Theme.blue)
         return Item(title: key, children: nil)
     case let label as [String: Any]:
         let key = Text(key)
-            .font(Styles.mono)
-            .foregroundColor(Styles.green)
+            .font(Theme.mono)
+            .foregroundColor(Theme.green)
         + Text(": ")
         + Text("Dictionary")
-            .font(Styles.mono)
+            .font(Theme.mono)
             .foregroundColor(.secondary)
         let child: Item = buildDisclosureTree(dict: label, title: key)
         return child
 
     case let label as [[String: Any]]:
         let key = Text(key)
-            .font(Styles.mono)
-            .foregroundColor(Styles.green)
+            .font(Theme.mono)
+            .foregroundColor(Theme.green)
         + Text(": ")
         + Text("Array \(label.count)")
-            .font(Styles.mono)
+            .font(Theme.mono)
             .foregroundColor(.secondary)
         let items = label.flatMap { item in item.map { dictToItem(key: $0.key, value: item[$0.key]) } }
         return Item(title: key, children: items)
@@ -84,7 +85,7 @@ fileprivate func dictToItem(key: String, value: Any) -> Item {
 
 fileprivate func buildDisclosureTree(
     dict: [String: Any],
-    title: Text = Text("Root").font(Styles.mono).foregroundColor(.secondary)
+    title: Text = Text("Root").font(Theme.mono).foregroundColor(.secondary)
 ) -> Item {
     let children = dict.map { next in
         dictToItem(key: next.key, value: dict[next.key])

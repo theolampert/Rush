@@ -45,6 +45,11 @@ class RushStore: ObservableObject {
         selectedMessageIndex = -1
         messages.removeAll()
     }
+    
+    func disconnectClient() {
+        mqttClient?.disconnect()
+        topics = []
+    }
 
     func connectClient(mqttConfig: MQTTConfiguration) {
         if let mqttClient = mqttClient {
@@ -82,17 +87,12 @@ class RushStore: ObservableObject {
 
         mqttClient?.didReceiveMessage = { [weak self] mqtt, message, id in
             guard self != nil else { return }
-            let bcf = ByteCountFormatter()
-            bcf.allowedUnits = [.useBytes]
-            bcf.countStyle = .file
-            let size = bcf.string(fromByteCount: Int64(message.payload.count))
             if let msg = message.string {
                 self?.messages.append(
                     Message(
                         id: UUID(),
                         topic: message.topic,
                         value: msg,
-                        sizeLabel: size,
                         qos: message.qos,
                         timestamp: Date().timeIntervalSince1970
                     )

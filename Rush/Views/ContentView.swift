@@ -13,8 +13,11 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            SubscriptionList(topics: store.topics, addTopic: store.subscribeTopic, removeTopic: store.unsubscribeTopic)
-                .equatable()
+            SubscriptionList(
+                topics: store.topics,
+                addTopic: store.subscribeTopic,
+                removeTopic: store.unsubscribeTopic
+            ).equatable()
             VSplitView {
                 MessageTableView()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)

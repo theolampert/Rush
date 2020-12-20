@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct MessageCountIndicator: View {
+fileprivate struct MessageCountIndicator: View {
     var count: Int
 
     var body: some View {

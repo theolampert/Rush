@@ -101,13 +101,13 @@
 		E4274BC0258E4142009A60DF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E43F79132555884600B9CE1B /* ConnectionManager.swift */,
 				E403B9F724E704F300919330 /* MessageTableView.swift */,
 				E46A49AE24AE1ABA00BEF852 /* ContentView.swift */,
 				E43F79162555888F00B9CE1B /* MainToolbar.swift */,
 				E482E0CC24F93E8A00DD532D /* MessageDetail.swift */,
 				E48537C125545D7D00526553 /* CreateConnectionForm.swift */,
 				E4C4E3F624F82D9E00B4EBDB /* ConnectionStatusIndicator.swift */,
-				E4D9C21C2556A9C600F759FC /* TreeView.swift */,
 				E492E55B25585B0600ECA053 /* DisclosureTree.swift */,
 				E498B63924E7E4F7001EEE11 /* SubscriptionList.swift */,
 				E498B63724E7E38D001EEE11 /* OptionalText.swift */,
@@ -138,7 +138,6 @@
 		E46A49AB24AE1ABA00BEF852 /* Rush */ = {
 			isa = PBXGroup;
 			children = (
-				E43F79132555884600B9CE1B /* ConnectionManager.swift */,
 				E4274BC0258E4142009A60DF /* Views */,
 				E482E0C924F93DDE00DD532D /* Models */,
 				E482E0BF24F9217F00DD532D /* Extensions */,
@@ -326,7 +325,6 @@
 				E482E0C124F9219A00DD532D /* Data+prettyPrintedJSONString.swift in Sources */,
 				E4274BC2258E4184009A60DF /* Array+subscript.swift in Sources */,
 				E498B63824E7E38D001EEE11 /* OptionalText.swift in Sources */,
-				E4D9C21D2556A9C700F759FC /* TreeView.swift in Sources */,
 				E482E0CB24F93DFE00DD532D /* ConnectionStatus.swift in Sources */,
 				E482E0CD24F93E8A00DD532D /* MessageDetail.swift in Sources */,
 				E403B9F824E704F300919330 /* MessageTableView.swift in Sources */,

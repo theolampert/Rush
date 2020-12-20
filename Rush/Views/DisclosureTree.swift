@@ -8,20 +8,20 @@
 
 import SwiftUI
 
-struct Item: Identifiable {
+fileprivate struct Item: Identifiable {
     let id = UUID()
     let title: Text
     var children: [Item]?
 }
 
-struct Styles {
+fileprivate struct Styles {
     static let mono = Font(NSFont.monospacedSystemFont(ofSize: 12, weight: .regular))
     static let red = Color(NSColor(red: 0.91, green: 0.518, blue: 0.455, alpha: 1.0))
     static let green = Color(NSColor(red: 0.482, green: 0.682, blue: 0.588, alpha: 1.0))
     static let blue = Color(NSColor(red: 0.561, green: 0.526, blue: 0.792, alpha: 1.0))
 }
 
-func dictToItem(key: String, value: Any) -> Item {
+fileprivate func dictToItem(key: String, value: Any) -> Item {
     switch value {
     case let label as String:
         let key = Text(key)
@@ -78,16 +78,18 @@ func dictToItem(key: String, value: Any) -> Item {
         let items = label.flatMap { item in item.map { dictToItem(key: $0.key, value: item[$0.key]) } }
         return Item(title: key, children: items)
     default:
-        return Item(title: Text("Fuck"), children: nil)
+        return Item(title: Text("Unknown"), children: nil)
     }
 }
 
-func buildDisclosureTree(dict: [String: Any], title: Text = Text("Root").font(Styles.mono).foregroundColor(.secondary)) -> Item {
+fileprivate func buildDisclosureTree(
+    dict: [String: Any],
+    title: Text = Text("Root").font(Styles.mono).foregroundColor(.secondary)
+) -> Item {
     let children = dict.map { next in
         dictToItem(key: next.key, value: dict[next.key])
     }
     return Item(title: title, children: children)
-
 }
 
 struct DisclosureTree: View {
@@ -96,9 +98,8 @@ struct DisclosureTree: View {
     var body: some View {
         let items = buildDisclosureTree(dict: dict)
         return List {
-            OutlineGroup(items, children: \.children) {
-                $0.title
-            }.listRowInsets(EdgeInsets())
+            OutlineGroup(items, children: \.children) { $0.title }
+                .listRowInsets(EdgeInsets())
         }.listStyle(PlainListStyle())
         .padding(.horizontal, 5)
     }

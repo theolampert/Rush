@@ -46,7 +46,7 @@ extension MessageTableView {
                 }
 
                 tableView.beginUpdates()
-                tableView.insertRows(at: IndexSet(integer: messages.count - 1), withAnimation: .effectFade)
+                tableView.insertRows(at: IndexSet(integer: messages.count - 1))
                 tableView.endUpdates()
 
                 if messages.count > 0 && autoscroll {

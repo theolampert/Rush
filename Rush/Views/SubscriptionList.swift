@@ -8,15 +8,7 @@
 
 import SwiftUI
 
-struct TopicPill: View {
-    var topic: String
-
-    var body: some View {
-        return topic.split(separator: "/").reduce(Text(""), { $0 + Text($1) + Text(" → ") })
-    }
-}
-
-struct SubscriptionList: View, Equatable {
+	struct SubscriptionList: View, Equatable {
     var topics: [String]
     var addTopic: (String) -> Void
     var removeTopic: (String) -> Void

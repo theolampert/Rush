@@ -30,8 +30,14 @@ struct MainToolbar: View {
         }
         ConnectionStatusIndicator()
         MenuButton(label: Image(systemName: "dot.radiowaves.left.and.right")) {
-            Button("New Connection") {
-                self.presenting = true
+            if self.store.connectionStatus != .connected {
+                Button("New Connection") {
+                    self.presenting = true
+                }
+            } else {
+                Button("Disconnect") {
+                    self.presenting = true
+                }
             }
         }
     }

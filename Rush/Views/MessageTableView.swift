@@ -29,7 +29,7 @@ struct MessageTableView: NSViewRepresentable {
         if context.coordinator.messages.count != viewModel.messages.count {
             context.coordinator.messages = viewModel.messages
         }
-        context.coordinator.autoscroll = store.autoscroll
+        context.coordinator.autoscroll = viewModel.autoscroll
     }
 }
 

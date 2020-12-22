@@ -18,7 +18,7 @@ struct RushApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                SubscriptionList()
+                SubscriptionList(viewModel: SubscriptionListViewModel(engine: engine))
                 VSplitView {
                     MessageTableView(viewModel: MessageTableViewModel(engine: engine))
                         .frame(maxWidth: .infinity, maxHeight: .infinity)

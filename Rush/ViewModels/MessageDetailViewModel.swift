@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import Combine
 
 class MessageDetailViewModel: ObservableObject {
     private let engine: MQTTEngine?
+    private let selectedMesasgePublisher = NotificationCenter.Publisher(center: .default, name: .setSelectedMessage, object: nil)
     
     enum TabState {
         case raw
@@ -22,6 +24,10 @@ class MessageDetailViewModel: ObservableObject {
     
     init(engine: MQTTEngine?) {
         self.engine = engine
+        selectedMesasgePublisher
+            .compactMap { $0.object as? Int }
+            .map { engine?.messages[$0] }
+            .assign(to: &$message)
     }
     
     func setMessage(index: Int) {

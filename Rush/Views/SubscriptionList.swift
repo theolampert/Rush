@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SubscriptionList: View {
-    @EnvironmentObject var viewModel: SubscriptionListViewModel
+    @StateObject var viewModel: SubscriptionListViewModel
 
     var body: some View {
         List {
@@ -43,6 +43,6 @@ struct SubscriptionList: View {
 
 struct SubscriptionList_Previews: PreviewProvider {
     static var previews: some View {
-        SubscriptionList()
+        SubscriptionList(viewModel: SubscriptionListViewModel(engine: nil))
     }
 }

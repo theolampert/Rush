@@ -9,20 +9,20 @@
 import SwiftUI
 
 struct ConnectionStatusIndicator: View {
-    @EnvironmentObject private var store: RushStore
+    @StateObject var viewModel: ConnectionStatusIndicatorViewModel
 
     var body: some View {
         HStack {
             Circle()
                 .frame(width: 10, height: 10, alignment: .center)
-                .foregroundColor(store.connectionStatus.label.1)
+                .foregroundColor(viewModel.status.label.1)
                 .transition(.opacity)
 
-            Text(store.connectionStatus.label.0)
+            Text(viewModel.status.label.0)
                 .font(.caption)
-            if store.currentlyConnectedHostname != nil {
+            if viewModel.hostname != nil {
                 Divider()
-                OptionalText(text: store.currentlyConnectedHostname).font(.caption)
+                OptionalText(text: viewModel.hostname).font(.caption)
             }
         }
         .padding(.vertical, 6)
@@ -36,6 +36,6 @@ struct ConnectionStatusIndicator: View {
 
 struct ConnectionStatusIndicator_Previews: PreviewProvider {
     static var previews: some View {
-        ConnectionStatusIndicator()
+        ConnectionStatusIndicator(viewModel: ConnectionStatusIndicatorViewModel(engine: nil))
     }
 }

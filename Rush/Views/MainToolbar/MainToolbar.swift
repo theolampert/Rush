@@ -18,26 +18,22 @@ fileprivate struct MessageCountIndicator: View {
 
 struct MainToolbar: View {
     @Binding var presenting: Bool
-    @EnvironmentObject private var store: RushStore
+    @StateObject var viewModel: MainToolbarViewModel
 
     var body: some View {
-        MessageCountIndicator(count: store.messages.count)
-        Button(action: { store.clearMessages() }) {
+        MessageCountIndicator(count: viewModel.totalMessages)
+        Button(action: viewModel.clearMessageHistory) {
             Label("Clear Messages", systemImage: "trash.circle.fill")
         }
-        Button(action: { store.autoscroll.toggle() }) {
-            Label("Toggle Autoscroll", systemImage: store.autoscroll ? "pause.circle.fill" : "play.circle.fill")
+        Button(action: { viewModel.autoscroll.toggle() }) {
+            Label("Toggle Autoscroll", systemImage: viewModel.autoscroll ? "pause.circle.fill" : "play.circle.fill")
         }
-        ConnectionStatusIndicator()
+//        ConnectionStatusIndicator()
         MenuButton(label: Image(systemName: "dot.radiowaves.left.and.right")) {
-            if self.store.connectionStatus != .connected {
-                Button("New Connection") {
-                    self.presenting = true
-                }
+            if viewModel.connectionStatus != .connected {
+                Button("New Connection") { self.presenting = true }
             } else {
-                Button("Disconnect") {
-                    self.store.disconnectClient()
-                }
+                Button("Disconnect", action: viewModel.disconnectClient)
             }
         }
     }
@@ -45,6 +41,6 @@ struct MainToolbar: View {
 
 struct MainToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        MainToolbar(presenting: .constant(false))
+        MainToolbar(presenting: .constant(false), viewModel: MainToolbarViewModel(engine: nil))
     }
 }

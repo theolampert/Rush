@@ -9,26 +9,26 @@
 import SwiftUI
 
 struct MessageDetailTabs: View {
-    @Binding var selection: MessageDetailTabBody.TabState
+    @Binding var selection: MessageDetailViewModel.TabState
     let message: Message?
     
     var body: some View {
         HStack {
             HStack {
                 Text("Raw")
-                    .foregroundColor(selection == .Raw ? .white : .gray)
+                    .foregroundColor(selection == .raw ? .white : .gray)
                     .onTapGesture {
-                        self.selection = .Raw
+                        self.selection = .raw
                     }
                 Text("JSON")
-                    .foregroundColor(selection == .JSON ? .white : .gray)
+                    .foregroundColor(selection == .json ? .white : .gray)
                     .onTapGesture {
-                        self.selection = .JSON
+                        self.selection = .json
                     }
                 Text("Tree View")
-                    .foregroundColor(selection == .Tree ? .white : .gray)
+                    .foregroundColor(selection == .tree ? .white : .gray)
                     .onTapGesture {
-                        self.selection = .Tree
+                        self.selection = .tree
                     }
             }
             Spacer()

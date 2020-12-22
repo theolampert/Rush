@@ -11,10 +11,10 @@ import SwiftUI
 import AppKit
 
 struct MessageTableView: NSViewRepresentable {
-    @EnvironmentObject var store: RushStore
+    @StateObject var viewModel: MessageTableViewModel
 
     internal func makeCoordinator() -> Coordinator {
-        return Coordinator(messages: store.messages, parent: self)
+        return Coordinator(messages: viewModel.messages, parent: self)
     }
 
     internal func makeNSView(context: NSViewRepresentableContext<MessageTableView>) -> NSView {
@@ -26,8 +26,8 @@ struct MessageTableView: NSViewRepresentable {
     }
 
     internal func updateNSView(_ nsView: NSView, context: NSViewRepresentableContext<MessageTableView>) {
-        if context.coordinator.messages.count != store.messages.count {
-            context.coordinator.messages = store.messages
+        if context.coordinator.messages.count != viewModel.messages.count {
+            context.coordinator.messages = viewModel.messages
         }
         context.coordinator.autoscroll = store.autoscroll
     }
@@ -147,8 +147,8 @@ extension MessageTableView {
             guard let object = notification.object else { return }
             guard let tableView = (object as? NSTableView) else { return }
             let selection = tableView.selectedRow
-            if parent.store.selectedMessageIndex != selection {
-                parent.store.selectedMessageIndex = selection
+            if parent.viewModel.selectedMessageIndex != selection {
+                parent.viewModel.selectedMessageIndex = selection
             }
         }
 

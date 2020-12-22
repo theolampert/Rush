@@ -12,7 +12,7 @@ struct JSONView: View {
     var JSONString: String
 
     var body: some View {
-        let data = Data(JSONString.utf8)//TODO: potentiall ineficient
+        let data = Data(JSONString.utf8)
         if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
             return AnyView(DisclosureTree(dict: json))
         } else {

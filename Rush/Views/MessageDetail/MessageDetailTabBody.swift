@@ -9,18 +9,12 @@
 import SwiftUI
 
 struct MessageDetailTabBody: View {
-    enum TabState {
-        case Raw
-        case JSON
-        case Tree
-    }
-    
-    let selection: TabState
+    let selection: MessageDetailViewModel.TabState
     let message: Message
 
     func renderBody() -> AnyView {
         switch selection {
-        case .Raw:
+        case .raw:
             return HStack {
                 TextEditor(text: .constant(message.value))
                     .foregroundColor(.secondary)
@@ -29,7 +23,7 @@ struct MessageDetailTabBody: View {
             }
             .padding(.horizontal, 5)
             .eraseToAnyView()
-        case .JSON:
+        case .json:
             return HStack {
                 TextEditor(text: .constant(message.value.data(using: .utf8)?.prettyPrintedJSONString ?? "--"))
                     .foregroundColor(.secondary)
@@ -38,7 +32,7 @@ struct MessageDetailTabBody: View {
             }
             .padding(.horizontal, 5)
             .eraseToAnyView()
-        case .Tree:
+        case .tree:
             return JSONView(JSONString: message.value).eraseToAnyView()
         }
     }

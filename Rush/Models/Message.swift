@@ -14,7 +14,7 @@ struct Message: Identifiable {
     let topic: String
     let value: String
     let qos: CocoaMQTTQOS
-    let timestamp: Double
+    let timestamp: Double = Date().timeIntervalSince1970
 
     var formattedTimestamp: String {
         let date = Date(timeIntervalSince1970: self.timestamp)

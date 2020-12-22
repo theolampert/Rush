@@ -9,25 +9,29 @@
 import SwiftUI
 import CocoaMQTT
 
-private let store = RushStore()
+fileprivate let engine = MQTTEngine()
 
 @main
 struct RushApp: App {
     @State var presenting: Bool = false
-
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .sheet(isPresented: $presenting, content: {
-                    ConnectionManager(onConnect: { conf in
-                        store.connectClient(mqttConfig: conf)
-                    })
-                })
-                .environmentObject(store)
-                .toolbar {
-                    MainToolbar(presenting: $presenting)
-                        .environmentObject(store)
+            NavigationView {
+                SubscriptionList()
+                VSplitView {
+                    MessageTableView(viewModel: MessageTableViewModel(engine: engine))
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    MessageDetail(viewModel: MessageDetailViewModel(engine: engine))
                 }
+            }.sheet(isPresented: $presenting, content: {
+                ConnectionManager(onConnect: { config in
+                    engine.connect(config: config)
+                })
+            })
+            .toolbar {
+                MainToolbar(presenting: $presenting, viewModel: MainToolbarViewModel(engine: engine))
+            }
         }.commands {
             SidebarCommands()
             ToolbarCommands()

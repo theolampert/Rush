@@ -20,8 +20,9 @@ struct MessageTableView: NSViewRepresentable {
     internal func makeNSView(context: NSViewRepresentableContext<MessageTableView>) -> NSView {
         let scrollView = NSScrollView()
         scrollView.hasVerticalScroller = true
+        scrollView.drawsBackground = false
+        scrollView.wantsLayer = true
         scrollView.documentView = context.coordinator.tableView
-
         return scrollView
     }
 
@@ -38,27 +39,16 @@ extension MessageTableView {
         var parent: MessageTableView
         var autoscroll: Bool = true
 
-        var messages: [Message] {
+        var messages: ContiguousArray<Message> {
             didSet {
-
-                if messages.isEmpty {
-                    tableView.reloadData()
-                }
-
-                tableView.beginUpdates()
-                tableView.insertRows(at: IndexSet(integer: messages.count - 1))
-                tableView.endUpdates()
-
+                tableView.noteNumberOfRowsChanged()
                 if messages.count > 0 && autoscroll {
-                    NSAnimationContext.runAnimationGroup({ [self] context in
-                        context.allowsImplicitAnimation = true
-                        tableView.scrollRowToVisible(messages.count - 1)
-                    }, completionHandler: nil)
+                    tableView.scrollRowToVisible(messages.count - 1)
                 }
             }
         }
 
-        init(messages: [Message], parent: MessageTableView) {
+        init(messages: ContiguousArray<Message>, parent: MessageTableView) {
             self.messages = messages
             self.parent = parent
         }
@@ -98,6 +88,7 @@ extension MessageTableView {
             tableView.allowsEmptySelection = true
             tableView.allowsColumnReordering = true
             tableView.usesAlternatingRowBackgroundColors = true
+            tableView.wantsLayer = true
 
             Column.allCases.forEach { column in
                 tableView.addTableColumn(column.nsColumn)
@@ -115,7 +106,7 @@ extension MessageTableView {
 
             switch column {
             case .topic:
-                text = message.topicName
+                text = message.topic
 
             case .value:
                 text = message.value
@@ -129,9 +120,10 @@ extension MessageTableView {
             case .timestamp:
                 text = message.formattedTimestamp
             }
-
+            
             if let textField = tableView.makeView(withIdentifier: identifier, owner: nil) as? NSTextField {
                 textField.drawsBackground = false
+                textField.wantsLayer = true
                 textField.stringValue = text
                 return textField
             } else {
@@ -139,6 +131,7 @@ extension MessageTableView {
                 textField.drawsBackground = false
                 textField.font = NSFont.monospacedSystemFont(ofSize: 11, weight: .regular)
                 textField.identifier = identifier
+                textField.wantsLayer = true
                 return textField
             }
         }

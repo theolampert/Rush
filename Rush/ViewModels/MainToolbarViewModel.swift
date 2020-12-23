@@ -13,7 +13,7 @@ extension Notification.Name {
     static let setSelectedMessage = Notification.Name("set_selected_message")
 }
 
-class MainToolbarViewModel: ObservableObject {
+final class MainToolbarViewModel: ObservableObject {
     private let engine: MQTTEngine?
     
     @Published var totalMessages: Int = 0
@@ -28,7 +28,7 @@ class MainToolbarViewModel: ObservableObject {
         self.engine = engine
         
         engine?.$messages
-            .throttle(for: .seconds(0.5), scheduler: RunLoop.main, latest: true)
+            .throttle(for: .milliseconds(250), scheduler: RunLoop.main, latest: true)
             .map(\.count)
             .assign(to: &$totalMessages)
         

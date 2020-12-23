@@ -10,7 +10,7 @@ import Foundation
 import CocoaMQTT
 
 struct Message: Identifiable {
-    let id: UUID
+    let id: UInt16
     let topic: String
     let value: String
     let qos: CocoaMQTTQOS

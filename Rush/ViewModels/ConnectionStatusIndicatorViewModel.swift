@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ConnectionStatusIndicatorViewModel: ObservableObject {
+final class ConnectionStatusIndicatorViewModel: ObservableObject {
     private let engine: MQTTEngine?
     
     @Published var status: ConnectionStatus = .disconnected

@@ -8,8 +8,9 @@
 
 import Foundation
 import Combine
+import CocoaMQTT
 
-class MessageDetailViewModel: ObservableObject {
+final class MessageDetailViewModel: ObservableObject {
     private let engine: MQTTEngine?
     private let selectedMesasgePublisher = NotificationCenter.Publisher(center: .default, name: .setSelectedMessage, object: nil)
     

@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import CocoaMQTT
 
 final class MessageTableViewModel: ObservableObject {
     private let engine: MQTTEngine
     private let autoscrollPublisher = NotificationCenter.Publisher(center: .default, name: .setAutoscroll, object: nil)
     
-    @Published var messages: [Message] = []
+    @Published var messages: ContiguousArray<Message> = ContiguousArray()
     @Published var autoscroll: Bool = false
     @Published var selectedMessageIndex: Int? = nil {
         didSet {
@@ -23,7 +24,6 @@ final class MessageTableViewModel: ObservableObject {
     init(engine: MQTTEngine) {
         self.engine = engine
         engine.$messages
-//            .throttle(for: .seconds(0.25), scheduler: RunLoop.main, latest: true)
             .assign(to: &$messages)
         
         autoscrollPublisher

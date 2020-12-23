@@ -14,23 +14,28 @@ struct Topic: Codable, RawRepresentable, Hashable {
 }
 
 final class MQTTEngine: ObservableObject {
-    private let client: CocoaMQTT = CocoaMQTT(clientID: "Rush")
-    private let monitor = NetworkMonitor()
+    private final let client: CocoaMQTT = CocoaMQTT(clientID: "Rush")
+    private final let monitor = NetworkMonitor()
     
-    @Published var messages: [Message] = []
-    @Published var topics: [Topic] = []
-    @Published var connectionStatus: ConnectionStatus = .disconnected
-    @Published var hostname: String? = nil
+    @Published final var messages: ContiguousArray<Message> = ContiguousArray()
+    @Published final var topics: [Topic] = []
+    @Published final var connectionStatus: ConnectionStatus = .disconnected
+    @Published final var hostname: String? = nil
+    
+    final let queue = DispatchQueue(label: "mqtt", qos: .background)
     
     init() {
         // Setup client callbacks
         listenForConnectionStateChanges()
         listenForMessages()
-        listenForConnectionAck()
         listenForNetworkChanges()
+        
+        client.dispatchQueue = queue
     }
     
     public func connect(config: MQTTConfiguration) {
+        hostname = config.host
+        
         client.host = config.host
         client.port = config.port
         client.username = config.username
@@ -63,29 +68,28 @@ extension MQTTEngine {
         }
     }
     
-    private func listenForConnectionAck() {
-        self.hostname = client.host
-    }
-    
     private func listenForMessages() {
         client.didReceiveMessage = { [weak self] mqtt, payload, id in
-            guard let value = payload.string else { return }
-            let message = Message(id: UUID(), topic: payload.topic, value: value, qos: payload.qos)
-            self?.messages.append(message)
+            let message = Message(id: id, topic: payload.topic, value: payload.string ?? "", qos: payload.qos)
+            DispatchQueue.main.async {
+                self?.messages.append(message)
+            }
         }
     }
     
     private func listenForConnectionStateChanges() {
         client.didChangeState = { [weak self] mqtt, state in
-            switch state {
-            case .initial:
-                self?.connectionStatus = .disconnected
-            case .disconnected:
-                self?.connectionStatus = .disconnected
-            case .connecting:
-                self?.connectionStatus = .connecting
-            case .connected:
-                self?.connectionStatus = .connected
+            DispatchQueue.main.async {
+                switch state {
+                case .initial:
+                    self?.connectionStatus = .disconnected
+                case .disconnected:
+                    self?.connectionStatus = .disconnected
+                case .connecting:
+                    self?.connectionStatus = .connecting
+                case .connected:
+                    self?.connectionStatus = .connected
+                }
             }
         }
     }

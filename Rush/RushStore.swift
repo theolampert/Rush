@@ -9,6 +9,7 @@
 import Foundation
 import Network
 import Combine
+import CocoaMQTT
 
 extension Array {
     var isNotEmpty: Bool { !isEmpty }

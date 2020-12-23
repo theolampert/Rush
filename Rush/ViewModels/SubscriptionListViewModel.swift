@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SubscriptionListViewModel: ObservableObject {
+final class SubscriptionListViewModel: ObservableObject {
     private let engine: MQTTEngine?
     
     @Published var topicList: [Topic] = []

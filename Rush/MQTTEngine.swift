@@ -33,10 +33,14 @@ final class MQTTEngine: ObservableObject {
         client = MQTTClient(host: config.host, identifier: "Rush", eventLoopGroupProvider: .createNew)
         _ = try? client?.connect().wait()
         connectionStatus = .connected
-        
-        listenForConnectionStateChanges()
+
         listenForMessages()
         listenForNetworkChanges()
+        
+        subscribeTopic(Topic(rawValue: "$SYS/broker/publish/bytes/received"))
+        subscribeTopic(Topic(rawValue: "$SYS/broker/publish/bytes/sent"))
+        subscribeTopic(Topic(rawValue: "$SYS/broker/store/messages/count"))
+        subscribeTopic(Topic(rawValue: "$SYS/broker/heap/current"))
     }
     
     public func disconnect() {
@@ -57,7 +61,7 @@ final class MQTTEngine: ObservableObject {
 
     public func unsubscribeTopic(_ topic: Topic) {
         topics = topics.filter { $0 != topic }
-        client?.unsubscribe(from: [topic.rawValue])
+        _ = try? client?.unsubscribe(from: [topic.rawValue]).wait()
     }
 }
 
@@ -69,12 +73,6 @@ extension MQTTEngine {
     }
     
     private func listenForMessages() {
-//        client.didReceiveMessage = { [weak self] mqtt, payload, id in
-//            let message = Message(id: id, topic: payload.topic, value: payload.string ?? "", qos: payload.qos)
-//            DispatchQueue.main.async {
-//                self?.messages.append(message)
-//            }
-//        }
         client?.addPublishListener(named: "My Listener") { [weak self] result in
             switch result {
             case .success(let publish):
@@ -88,22 +86,5 @@ extension MQTTEngine {
                 print("Error while receiving PUBLISH event")
             }
         }
-    }
-    
-    private func listenForConnectionStateChanges() {
-//        client.didChangeState = { [weak self] mqtt, state in
-//            DispatchQueue.main.async {
-//                switch state {
-//                case .initial:
-//                    self?.connectionStatus = .disconnected
-//                case .disconnected:
-//                    self?.connectionStatus = .disconnected
-//                case .connecting:
-//                    self?.connectionStatus = .connecting
-//                case .connected:
-//                    self?.connectionStatus = .connected
-//                }
-//            }
-//        }
     }
 }

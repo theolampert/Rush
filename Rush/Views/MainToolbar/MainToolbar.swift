@@ -12,7 +12,8 @@ fileprivate struct MessageCountIndicator: View {
     var count: Int
 
     var body: some View {
-        Text("\(count) messages").font(.footnote)
+        Text("\(count) messages")
+            .font(.system(size: 10, design: .monospaced))
     }
 }
 

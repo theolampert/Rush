@@ -21,6 +21,7 @@ final class SubscriptionListViewModel: ObservableObject {
     
     func subscribe() {
         engine?.subscribeTopic(Topic(rawValue: newTopic))
+        newTopic = ""
     }
     
     func unsubscribe(topic: Topic) {

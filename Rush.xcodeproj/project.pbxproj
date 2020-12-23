@@ -23,7 +23,6 @@
 		E46A49B124AE1ABE00BEF852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46A49B024AE1ABE00BEF852 /* Assets.xcassets */; };
 		E46A49B424AE1ABE00BEF852 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46A49B324AE1ABE00BEF852 /* Preview Assets.xcassets */; };
 		E482D9E924E8178D00D93612 /* Rush.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482D9E824E8178D00D93612 /* Rush.swift */; };
-		E482DA2524E82CD200D93612 /* RushStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482DA2424E82CD200D93612 /* RushStore.swift */; };
 		E482E0C124F9219A00DD532D /* Data+prettyPrintedJSONString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482E0C024F9219A00DD532D /* Data+prettyPrintedJSONString.swift */; };
 		E482E0C524F93CDF00DD532D /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482E0C424F93CDF00DD532D /* NetworkMonitor.swift */; };
 		E482E0C824F93DD900DD532D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482E0C724F93DD900DD532D /* Message.swift */; };
@@ -66,7 +65,6 @@
 		E46A49B824AE1ABE00BEF852 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E46A49B924AE1ABE00BEF852 /* Rush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Rush.entitlements; sourceTree = "<group>"; };
 		E482D9E824E8178D00D93612 /* Rush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rush.swift; sourceTree = "<group>"; };
-		E482DA2424E82CD200D93612 /* RushStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RushStore.swift; sourceTree = "<group>"; };
 		E482E0C024F9219A00DD532D /* Data+prettyPrintedJSONString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+prettyPrintedJSONString.swift"; sourceTree = "<group>"; };
 		E482E0C424F93CDF00DD532D /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		E482E0C724F93DD900DD532D /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -172,7 +170,6 @@
 				E482E0C924F93DDE00DD532D /* Models */,
 				E482E0BF24F9217F00DD532D /* Extensions */,
 				E482D9E824E8178D00D93612 /* Rush.swift */,
-				E482DA2424E82CD200D93612 /* RushStore.swift */,
 				E4F5DF752590B87D007A9196 /* MQTTEngine.swift */,
 				E482E0C424F93CDF00DD532D /* NetworkMonitor.swift */,
 				E46A49B024AE1ABE00BEF852 /* Assets.xcassets */,
@@ -393,7 +390,6 @@
 				E4F5DF6C258FA681007A9196 /* JSONView.swift in Sources */,
 				E43F79142555884600B9CE1B /* ConnectionManager.swift in Sources */,
 				E4F5DF68258FA31C007A9196 /* View+eraseToAnyView.swift in Sources */,
-				E482DA2524E82CD200D93612 /* RushStore.swift in Sources */,
 				E4F5DF762590B87D007A9196 /* MQTTEngine.swift in Sources */,
 				E41424322591001500879073 /* SubscriptionListViewModel.swift in Sources */,
 				E4274BBD258E40E9009A60DF /* Connection.swift in Sources */,

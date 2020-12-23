@@ -7,13 +7,13 @@
 //
 
 import Foundation
-import CocoaMQTT
+import MQTTNIO
 
 struct Message: Identifiable {
-    let id: UInt16
+    let id: UUID = UUID()
     let topic: String
     let value: String
-    let qos: CocoaMQTTQOS
+    let qos: MQTTQoS
     let timestamp: Double = Date().timeIntervalSince1970
 
     var formattedTimestamp: String {

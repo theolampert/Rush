@@ -8,7 +8,6 @@
 
 import Foundation
 import Combine
-import CocoaMQTT
 
 final class MessageDetailViewModel: ObservableObject {
     private let engine: MQTTEngine?

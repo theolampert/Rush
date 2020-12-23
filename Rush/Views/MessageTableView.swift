@@ -78,6 +78,18 @@ extension MessageTableView {
                 return column
             }
         }
+        
+        @objc func tableViewCopyTopic(_ sender: AnyObject) {
+            guard tableView.clickedRow >= 0 else { return }
+            let topic = messages[tableView.clickedRow].topic
+            let pasteboard = NSPasteboard.general
+            pasteboard.declareTypes([.string], owner: nil)
+            pasteboard.setString(topic, forType: .string)
+        }
+        
+        @objc func tableViewDeleteItemClicked(_ sender: AnyObject) {
+            guard tableView.clickedRow >= 0 else { return }
+        }
 
         lazy var tableView: NSTableView = { [weak self] in
             let tableView = NSTableView(frame: .zero)
@@ -85,10 +97,16 @@ extension MessageTableView {
             tableView.dataSource = self
             tableView.columnAutoresizingStyle = .uniformColumnAutoresizingStyle
             tableView.selectionHighlightStyle = .regular
-            tableView.allowsEmptySelection = true
+            tableView.allowsEmptySelection = false
             tableView.allowsColumnReordering = true
             tableView.usesAlternatingRowBackgroundColors = true
             tableView.wantsLayer = true
+            
+            let menu = NSMenu()
+            let topicMenuItem = NSMenuItem(title: "Copy topic to clipboard", action: #selector(tableViewCopyTopic(_:)), keyEquivalent: "")
+            topicMenuItem.target = self
+            menu.addItem(topicMenuItem)
+            tableView.menu = menu
 
             Column.allCases.forEach { column in
                 tableView.addTableColumn(column.nsColumn)
@@ -112,7 +130,7 @@ extension MessageTableView {
                 text = message.value
 
             case .qos:
-                text = message.qos.description
+                text = message.qos.rawValue.description
 
             case .size:
                 text = message.sizeLabel

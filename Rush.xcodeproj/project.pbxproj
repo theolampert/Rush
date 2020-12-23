@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B4EFD644FBACA185D3B2E0F1 /* Pods_Rush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ACA9691626CDB466311600A /* Pods_Rush.framework */; };
 		E401BE52259113B7003D5E38 /* MessageDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E401BE51259113B7003D5E38 /* MessageDetailViewModel.swift */; };
 		E401BE5625911697003D5E38 /* MessageTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E401BE5525911697003D5E38 /* MessageTableViewModel.swift */; };
 		E4023A592590F95900BDBC9C /* MainToolbarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4023A582590F95900BDBC9C /* MainToolbarViewModel.swift */; };
 		E403B9F824E704F300919330 /* MessageTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E403B9F724E704F300919330 /* MessageTableView.swift */; };
+		E412E9B02593940B00E0F5AF /* MQTTNIO in Frameworks */ = {isa = PBXBuildFile; productRef = E412E9AF2593940B00E0F5AF /* MQTTNIO */; };
 		E41424322591001500879073 /* SubscriptionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41424312591001500879073 /* SubscriptionListViewModel.swift */; };
 		E41424352591118B00879073 /* ConnectionStatusIndicatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41424342591118B00879073 /* ConnectionStatusIndicatorViewModel.swift */; };
 		E41BF26D25933D2000EC5151 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E41BF26C25933D2000EC5151 /* QuartzCore.framework */; };
@@ -44,9 +44,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1663C58040CD7696EC2172E1 /* Pods-Rush.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rush.release.xcconfig"; path = "Target Support Files/Pods-Rush/Pods-Rush.release.xcconfig"; sourceTree = "<group>"; };
-		32942AE880DB16F39EB7AA8C /* Pods-Rush.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rush.debug.xcconfig"; path = "Target Support Files/Pods-Rush/Pods-Rush.debug.xcconfig"; sourceTree = "<group>"; };
-		6ACA9691626CDB466311600A /* Pods_Rush.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rush.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E401BE51259113B7003D5E38 /* MessageDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailViewModel.swift; sourceTree = "<group>"; };
 		E401BE5525911697003D5E38 /* MessageTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewModel.swift; sourceTree = "<group>"; };
 		E4023A582590F95900BDBC9C /* MainToolbarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainToolbarViewModel.swift; sourceTree = "<group>"; };
@@ -89,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4EFD644FBACA185D3B2E0F1 /* Pods_Rush.framework in Frameworks */,
+				E412E9B02593940B00E0F5AF /* MQTTNIO in Frameworks */,
 				E486CA3D24E5330200D70537 /* Charts in Frameworks */,
 				E41BF26D25933D2000EC5151 /* QuartzCore.framework in Frameworks */,
 			);
@@ -102,18 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				E41BF26C25933D2000EC5151 /* QuartzCore.framework */,
-				6ACA9691626CDB466311600A /* Pods_Rush.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E355E9D1F494F14C61E4047B /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				32942AE880DB16F39EB7AA8C /* Pods-Rush.debug.xcconfig */,
-				1663C58040CD7696EC2172E1 /* Pods-Rush.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		E4023A572590F93400BDBC9C /* ViewModels */ = {
@@ -149,7 +136,6 @@
 			children = (
 				E46A49AB24AE1ABA00BEF852 /* Rush */,
 				E46A49AA24AE1ABA00BEF852 /* Products */,
-				E355E9D1F494F14C61E4047B /* Pods */,
 				7F295AB5B2E5B7233C878B3A /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -237,11 +223,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E46A49BC24AE1ABE00BEF852 /* Build configuration list for PBXNativeTarget "Rush" */;
 			buildPhases = (
-				A86C44DA85DA2DDFA06FE6EF /* [CP] Check Pods Manifest.lock */,
 				E46A49A524AE1ABA00BEF852 /* Sources */,
 				E46A49A624AE1ABA00BEF852 /* Frameworks */,
 				E46A49A724AE1ABA00BEF852 /* Resources */,
-				D3D329CF1F347979A66A1655 /* [CP] Embed Pods Frameworks */,
 				E4F8A9B924E4685500D211DC /* ShellScript */,
 			);
 			buildRules = (
@@ -251,6 +235,7 @@
 			name = Rush;
 			packageProductDependencies = (
 				E486CA3C24E5330200D70537 /* Charts */,
+				E412E9AF2593940B00E0F5AF /* MQTTNIO */,
 			);
 			productName = Rush;
 			productReference = E46A49A924AE1ABA00BEF852 /* Rush.app */;
@@ -282,6 +267,7 @@
 			mainGroup = E46A49A024AE1ABA00BEF852;
 			packageReferences = (
 				E486CA3B24E5330200D70537 /* XCRemoteSwiftPackageReference "swiftui-charts" */,
+				E412E9AE2593940B00E0F5AF /* XCRemoteSwiftPackageReference "mqtt-nio" */,
 			);
 			productRefGroup = E46A49AA24AE1ABA00BEF852 /* Products */;
 			projectDirPath = "";
@@ -305,45 +291,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A86C44DA85DA2DDFA06FE6EF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Rush-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D3D329CF1F347979A66A1655 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Rush/Pods-Rush-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Rush/Pods-Rush-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Rush/Pods-Rush-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E4F8A9B924E4685500D211DC /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -519,7 +466,6 @@
 		};
 		E46A49BD24AE1ABE00BEF852 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 32942AE880DB16F39EB7AA8C /* Pods-Rush.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Rush/Rush.entitlements;
@@ -543,7 +489,6 @@
 		};
 		E46A49BE24AE1ABE00BEF852 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1663C58040CD7696EC2172E1 /* Pods-Rush.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Rush/Rush.entitlements;
@@ -589,6 +534,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E412E9AE2593940B00E0F5AF /* XCRemoteSwiftPackageReference "mqtt-nio" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adam-fowler/mqtt-nio.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
 		E486CA3B24E5330200D70537 /* XCRemoteSwiftPackageReference "swiftui-charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/spacenation/swiftui-charts";
@@ -600,6 +553,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E412E9AF2593940B00E0F5AF /* MQTTNIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E412E9AE2593940B00E0F5AF /* XCRemoteSwiftPackageReference "mqtt-nio" */;
+			productName = MQTTNIO;
+		};
 		E486CA3C24E5330200D70537 /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E486CA3B24E5330200D70537 /* XCRemoteSwiftPackageReference "swiftui-charts" */;

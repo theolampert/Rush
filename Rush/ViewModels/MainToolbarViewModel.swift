@@ -23,17 +23,22 @@ final class MainToolbarViewModel: ObservableObject {
             NotificationCenter.default.post(name: .setAutoscroll, object: autoscroll)
         }
     }
+    @Published var status: ConnectionStatus = .disconnected
+    @Published var hostname: String? = nil
     
     init(engine: MQTTEngine?) {
         self.engine = engine
         
         engine?.$messages
-            .throttle(for: .milliseconds(250), scheduler: RunLoop.main, latest: true)
+            .throttle(for: .milliseconds(60), scheduler: RunLoop.main, latest: true)
             .map(\.count)
             .assign(to: &$totalMessages)
         
         engine?.$connectionStatus
             .assign(to: &$connectionStatus)
+        
+        engine?.$connectionStatus.assign(to: &$status)
+        engine?.$hostname.assign(to: &$hostname)
     }
     
     func clearMessageHistory() {

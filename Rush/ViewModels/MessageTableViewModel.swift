@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CocoaMQTT
 
 final class MessageTableViewModel: ObservableObject {
     private let engine: MQTTEngine

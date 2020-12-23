@@ -15,7 +15,7 @@ struct MQTTConfiguration {
     var password: String
     var tls = true
 
-    var port: UInt16 {
-        UInt16(textPort)!
+    var port: Int {
+        Int(textPort)!
     }
 }

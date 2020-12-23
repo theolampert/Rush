@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import CocoaMQTT
 
 fileprivate let engine = MQTTEngine()
 

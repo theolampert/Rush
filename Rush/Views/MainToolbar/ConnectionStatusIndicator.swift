@@ -9,20 +9,23 @@
 import SwiftUI
 
 struct ConnectionStatusIndicator: View {
-    @StateObject var viewModel: ConnectionStatusIndicatorViewModel
+    let hostname: String?
+    let status: ConnectionStatus
 
     var body: some View {
         HStack {
             Circle()
                 .frame(width: 10, height: 10, alignment: .center)
-                .foregroundColor(viewModel.status.label.1)
+                .foregroundColor(status.label.1)
                 .transition(.opacity)
 
-            Text(viewModel.status.label.0)
+            Text(status.label.0)
                 .font(.caption)
-            if viewModel.hostname != nil {
+            if hostname != nil {
                 Divider()
-                OptionalText(text: viewModel.hostname).font(.caption)
+                hostname.map {
+                    Text($0).font(.caption)
+                }
             }
         }
         .padding(.vertical, 6)
@@ -34,8 +37,8 @@ struct ConnectionStatusIndicator: View {
     }
 }
 
-struct ConnectionStatusIndicator_Previews: PreviewProvider {
-    static var previews: some View {
-        ConnectionStatusIndicator(viewModel: ConnectionStatusIndicatorViewModel(engine: nil))
-    }
-}
+//struct ConnectionStatusIndicator_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ConnectionStatusIndicator()
+//    }
+//}

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct OptionalText: View {
-    var text: String?
+    let text: String?
 
     var body: some View {
         text.map { Text($0) }

@@ -17,12 +17,16 @@ struct MessageDetail: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            OptionalText(text: viewModel.message?.topic)
+            TextPill(text: viewModel.message?.topic)
                 .font(.footnote)
-                .padding(.bottom)
-                .foregroundColor(.gray)
-                .padding(padding)
-            Divider().padding(padding)
+                .padding(0)
+                .padding(.horizontal, padding)
+                .padding(.top, padding)
+                .transition(.slide)
+            Divider()
+                .padding(0)
+                .padding(.horizontal, padding)
+                .padding(.bottom, padding)
             MessageDetailTabs(selection: $viewModel.tabSelection, message: viewModel.message)
             Divider().padding(padding)
             VStack(alignment: .leading) {
